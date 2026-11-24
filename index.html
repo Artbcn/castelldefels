@@ -43,7 +43,26 @@ main{max-width:860px;margin:0 auto;padding:16px max(4vw,14px) 40px}
 .tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:16px;min-height:104px;padding:12px 6px;font-weight:500;font-size:15px;line-height:1.15}
 .tile svg{width:32px;height:32px;stroke:var(--gold);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .tile:active{transform:scale(.97)}
-@media(min-width:640px){.tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(min-width:640px){.tile{min-height:120px;font-size:16px}}
+.acc{display:grid;grid-template-columns:40px minmax(0,1fr) 22px;align-items:center;gap:12px;margin:14px 0 0;padding:16px 18px;border-radius:18px;background:var(--gold);color:#fff;text-decoration:none}
+.acc svg{width:34px;height:34px;stroke:#fff;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.acc .chev{width:22px;height:22px;stroke-width:2}
+.acc b{display:block;font-size:20px;font-weight:500}.acc small{display:block;font-size:15px;color:#fbf3e8}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.steps li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;font-size:16.5px}
+.num{width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:600}
+:root[data-theme=dark] .num{background:var(--gold)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .num{background:var(--gold)}}
+.vr video{grid-column:1/-1;width:100%;border-radius:12px;margin-top:8px;background:#000;aspect-ratio:16/9}
+.lav{grid-column:1/-1;width:100%;max-width:360px;border-radius:12px;margin-top:8px}
+.tiles.main{grid-template-columns:repeat(2,minmax(0,1fr))}
+.tiles.main .tile{flex-direction:row;justify-content:flex-start;text-align:left;min-height:64px;padding:12px 14px;gap:12px;font-size:16px}
+.tiles.main .tile svg{width:28px;height:28px;flex:none}
+@media(min-width:640px){.tiles.main{grid-template-columns:repeat(4,minmax(0,1fr))}.tiles.main .tile{min-height:72px}}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.stats div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.stats b{display:block;font-size:24px;font-weight:400;color:var(--gold-ink)}.stats span{font-size:15px;color:var(--mute)}
+
 .sec{font-size:22px;font-weight:500;margin:4px 0 12px}
 /* rows */
 .rows{display:grid;gap:10px}
@@ -171,10 +190,39 @@ const FREE=[
 {n:["Aparcamiento público junto a la estación","Public car park by the station","Parking public près de la gare","Aparcament públic al costat de l'estació"],ll:"41.2818255,1.9842472",t:9},
 {n:["Aparcamiento gratuito del Canal Olímpic","Olympic Canal free car park","Parking gratuit du Canal olympique","Aparcament gratuït del Canal Olímpic"],ll:"41.2791572,1.9898105",t:14}];
 const X={
-es:{hello:"Bienvenido a Castelldefels",sub:"Tu guía rápida desde ART Apartments",nearT:"Lo más cerca",back:"Volver",tTr:"Tren y bus",tPk:"Aparcar",tSee:"Qué ver",tBld:"Tu edificio",tCt:"Contacto",call:"Llamar",mail:"Escribir",minS:"min",seeAll:"Ver todo"},
-en:{hello:"Welcome to Castelldefels",sub:"Your quick guide from ART Apartments",nearT:"Closest to you",back:"Back",tTr:"Train & bus",tPk:"Parking",tSee:"Sightseeing",tBld:"Your building",tCt:"Contact",call:"Call",mail:"Email",minS:"min",seeAll:"See all"},
-fr:{hello:"Bienvenue à Castelldefels",sub:"Votre guide pratique d'ART Apartments",nearT:"Tout près",back:"Retour",tTr:"Train et bus",tPk:"Stationnement",tSee:"À voir",tBld:"Votre immeuble",tCt:"Contact",call:"Appeler",mail:"Écrire",minS:"min",seeAll:"Tout voir"},
-ca:{hello:"Benvingut a Castelldefels",sub:"La teva guia ràpida d'ART Apartments",nearT:"El més a prop",back:"Tornar",tTr:"Tren i bus",tPk:"Aparcar",tSee:"Què veure",tBld:"El teu edifici",tCt:"Contacte",call:"Trucar",mail:"Escriure",minS:"min",seeAll:"Veure-ho tot"}};
+es:{tHelp:"En tu apartamento",helpL:"Vídeos cortos para resolver lo más habitual.",lavWhere:"Dónde está: en la azotea, la puerta blanca que ves marcada en la foto.",vidT:"Mira cómo se abre",vids:[["Abrir la puerta con TuLlave", "Abre la app, toca el candado y la puerta se desbloquea."], ["Desbloquear el termostato", "Si en la pantalla ves un candado, el termostato está bloqueado: en el vídeo ves cómo desbloquearlo."], ["Cambiar de frío a calor", "Cambia el modo del termostato hasta que aparezca el sol (calor) o el copo de nieve (frío)."], ["Si se va la luz", "Abre el cuadro eléctrico junto a la puerta de entrada y sube el interruptor que haya bajado."], ["Cafetera Dolce Gusto", "Cómo preparar un café con la cafetera de cápsulas."]],hello:"Bienvenido a ART Apartments",sub:"Tu guía rápida para la estancia en Castelldefels",nearT:"Lo más cerca",back:"Volver",tAcc:"Acceso al edificio",tAccS:"Tu llave digital con la app TuLlave",tBld:"El edificio",tArr:"Cómo llegar",tPk:"Aparcar",tLoc:"Comercio local",tSee:"Lo imprescindible",tCt:"Contacto",call:"Llamar",mail:"Escribir",minS:"min",
+ accL:"No hay recepción: el check-in es 100 % digital y entras al edificio y a tu apartamento con tu móvil.",
+ accSteps:["Descarga la app TuLlave en tu móvil.","Haz el check-in online antes de llegar. Cada adulto debe registrarse.","Cuando la reserva esté pagada y el check-in completo, cada huésped recibe su llave digital por correo electrónico.","Abre la app TuLlave e introduce o activa el código que te enviamos.","Al llegar, abre la puerta del edificio desde la app y después la de tu apartamento."],
+ accNote:"Tu llave funciona desde las 16:00 del día de llegada hasta las 10:00 del día de salida.",accHelp:"¿No se abre? Revisa que tienes Bluetooth e internet activados y llámanos.",ios:"App Store (iPhone)",android:"Google Play (Android)",
+ bldL:"Edificio de 2021 en pleno centro de Castelldefels, en la avenida principal.",fac:[["Piscina y solárium","Piscina exterior en la azotea, con solárium."],["Lavandería","Cuarto de lavado en la azotea, junto a las zonas comunes."],["Ascensor","Comunica todas las plantas con la azotea."],["Tu apartamento","Cocina equipada, aire acondicionado y calefacción, microondas, nevera, TV y baño con ducha. Algunos tienen balcón."]],
+ locT:"Ubicación",locL:[["200 m","de la estación de tren"],["1,2 km","de la playa"],["14 km","del aeropuerto"],["20 km","de Barcelona"]],openMap:"Abrir en Google Maps",
+ arrL:"Avinguda de la Constitució, 164 · 08860 Castelldefels",fromAir:"Desde el aeropuerto",fromAirD:"El aeropuerto de Barcelona-El Prat está a unos 14 km. Puedes venir en taxi o en transporte público.",fromAirB:"Ruta desde el aeropuerto",fromBcn:"Desde Barcelona",fromBcnD:"Toma el tren R2 Sud hasta la estación de Castelldefels: el edificio está a 200 m.",byCar:"En coche",byCarD:"Mira la sección Aparcar para las zonas de pago y los aparcamientos gratuitos.",toBcn:"Ir a Barcelona",locSub:"Lo que te recomendamos para comprar y disfrutar cerca del apartamento."},
+en:{tHelp:"In your apartment",helpL:"Short videos for the most common questions.",lavWhere:"Where it is: on the rooftop, the white door marked in the photo.",vidT:"See how it opens",vids:[["Open the door with TuLlave", "Open the app, tap the padlock and the door unlocks."], ["Unlock the thermostat", "If you see a padlock on the screen, the thermostat is locked: the video shows how to unlock it."], ["Switch from cooling to heating", "Change the thermostat mode until you see the sun (heating) or the snowflake (cooling)."], ["If the power goes off", "Open the electrical panel by the entrance door and push up any switch that has dropped."], ["Dolce Gusto coffee machine", "How to make a coffee with the capsule machine."]],hello:"Welcome to ART Apartments",sub:"Your quick guide to your stay in Castelldefels",nearT:"Closest to you",back:"Back",tAcc:"Building access",tAccS:"Your digital key with the TuLlave app",tBld:"The building",tArr:"Getting here",tPk:"Parking",tLoc:"Local shops",tSee:"Must-sees",tCt:"Contact",call:"Call",mail:"Email",minS:"min",
+ accL:"There is no front desk: check-in is 100% digital and you open the building and your apartment with your phone.",
+ accSteps:["Download the TuLlave app on your phone.","Complete online check-in before you arrive. Every adult must register.","Once the booking is paid and check-in is complete, each guest receives their digital key by email.","Open the TuLlave app and enter or activate the code we sent you.","When you arrive, open the building door from the app, then your apartment door."],
+ accNote:"Your key works from 16:00 on your arrival day until 10:00 on your departure day.",accHelp:"Door won't open? Check that Bluetooth and mobile data are on, and call us.",ios:"App Store (iPhone)",android:"Google Play (Android)",
+ bldL:"A 2021 building right in the centre of Castelldefels, on the main avenue.",fac:[["Pool & sun deck","Outdoor rooftop pool with a sun deck."],["Laundry","Laundry room on the rooftop, next to the shared areas."],["Lift","Connects every floor with the rooftop."],["Your apartment","Equipped kitchen, air conditioning and heating, microwave, fridge, TV and a bathroom with shower. Some have a balcony."]],
+ locT:"Location",locL:[["200 m","from the train station"],["1.2 km","from the beach"],["14 km","from the airport"],["20 km","from Barcelona"]],openMap:"Open in Google Maps",
+ arrL:"Avinguda de la Constitució, 164 · 08860 Castelldefels",fromAir:"From the airport",fromAirD:"Barcelona-El Prat airport is about 14 km away. You can come by taxi or public transport.",fromAirB:"Route from the airport",fromBcn:"From Barcelona",fromBcnD:"Take the R2 Sud train to Castelldefels station: the building is 200 m away.",byCar:"By car",byCarD:"See the Parking section for paid zones and free car parks.",toBcn:"Going to Barcelona",locSub:"Our recommendations for shopping and treats near the apartment."},
+fr:{tHelp:"Dans votre appartement",helpL:"De courtes vidéos pour les questions les plus fréquentes.",lavWhere:"Où la trouver : sur le toit, la porte blanche entourée sur la photo.",vidT:"Voir comment ouvrir",vids:[["Ouvrir la porte avec TuLlave", "Ouvrez l'appli, touchez le cadenas et la porte se déverrouille."], ["Déverrouiller le thermostat", "Si un cadenas s'affiche, le thermostat est verrouillé : la vidéo montre comment le déverrouiller."], ["Passer du froid au chaud", "Changez le mode du thermostat jusqu'à voir le soleil (chaud) ou le flocon (froid)."], ["En cas de coupure de courant", "Ouvrez le tableau électrique près de la porte d'entrée et relevez l'interrupteur qui est descendu."], ["Machine à café Dolce Gusto", "Comment préparer un café avec la machine à capsules."]],hello:"Bienvenue chez ART Apartments",sub:"Votre guide pratique pour votre séjour à Castelldefels",nearT:"Tout près",back:"Retour",tAcc:"Accès à l'immeuble",tAccS:"Votre clé numérique avec l'appli TuLlave",tBld:"L'immeuble",tArr:"Comment venir",tPk:"Stationnement",tLoc:"Commerces locaux",tSee:"Incontournables",tCt:"Contact",call:"Appeler",mail:"Écrire",minS:"min",
+ accL:"Il n'y a pas de réception : l'enregistrement est 100 % numérique et vous ouvrez l'immeuble et votre appartement avec votre téléphone.",
+ accSteps:["Téléchargez l'appli TuLlave sur votre téléphone.","Faites l'enregistrement en ligne avant d'arriver. Chaque adulte doit s'enregistrer.","Une fois la réservation payée et l'enregistrement terminé, chaque voyageur reçoit sa clé numérique par e-mail.","Ouvrez l'appli TuLlave et saisissez ou activez le code envoyé.","À votre arrivée, ouvrez la porte de l'immeuble depuis l'appli, puis celle de votre appartement."],
+ accNote:"Votre clé fonctionne de 16 h le jour d'arrivée jusqu'à 10 h le jour du départ.",accHelp:"La porte ne s'ouvre pas ? Vérifiez que le Bluetooth et les données mobiles sont activés, et appelez-nous.",ios:"App Store (iPhone)",android:"Google Play (Android)",
+ bldL:"Immeuble de 2021 en plein centre de Castelldefels, sur l'avenue principale.",fac:[["Piscine et solarium","Piscine extérieure sur le toit, avec solarium."],["Buanderie","Buanderie sur le toit, à côté des espaces communs."],["Ascenseur","Dessert tous les étages jusqu'au toit."],["Votre appartement","Cuisine équipée, climatisation et chauffage, micro-ondes, réfrigérateur, TV et salle de bain avec douche. Certains ont un balcon."]],
+ locT:"Emplacement",locL:[["200 m","de la gare"],["1,2 km","de la plage"],["14 km","de l'aéroport"],["20 km","de Barcelone"]],openMap:"Ouvrir dans Google Maps",
+ arrL:"Avinguda de la Constitució, 164 · 08860 Castelldefels",fromAir:"Depuis l'aéroport",fromAirD:"L'aéroport de Barcelone-El Prat est à environ 14 km. Vous pouvez venir en taxi ou en transports en commun.",fromAirB:"Itinéraire depuis l'aéroport",fromBcn:"Depuis Barcelone",fromBcnD:"Prenez le train R2 Sud jusqu'à la gare de Castelldefels : l'immeuble est à 200 m.",byCar:"En voiture",byCarD:"Consultez la rubrique Stationnement pour les zones payantes et les parkings gratuits.",toBcn:"Aller à Barcelone",locSub:"Nos recommandations pour faire vos courses et vous faire plaisir près de l'appartement."},
+ca:{tHelp:"Al teu apartament",helpL:"Vídeos curts per resoldre el més habitual.",lavWhere:"On és: al terrat, la porta blanca que veus marcada a la foto.",vidT:"Mira com s'obre",vids:[["Obrir la porta amb TuLlave", "Obre l'app, toca el cadenat i la porta es desbloqueja."], ["Desbloquejar el termòstat", "Si a la pantalla veus un cadenat, el termòstat està bloquejat: al vídeo veus com desbloquejar-lo."], ["Canviar de fred a calor", "Canvia el mode del termòstat fins que surti el sol (calor) o el floc de neu (fred)."], ["Si se'n va la llum", "Obre el quadre elèctric al costat de la porta d'entrada i puja l'interruptor que hagi baixat."], ["Cafetera Dolce Gusto", "Com preparar un cafè amb la cafetera de càpsules."]],hello:"Benvingut a ART Apartments",sub:"La teva guia ràpida per a l'estada a Castelldefels",nearT:"El més a prop",back:"Tornar",tAcc:"Accés a l'edifici",tAccS:"La teva clau digital amb l'app TuLlave",tBld:"L'edifici",tArr:"Com arribar",tPk:"Aparcar",tLoc:"Comerç local",tSee:"Imprescindibles",tCt:"Contacte",call:"Trucar",mail:"Escriure",minS:"min",
+ accL:"No hi ha recepció: el check-in és 100 % digital i entres a l'edifici i a l'apartament amb el mòbil.",
+ accSteps:["Descarrega l'app TuLlave al mòbil.","Fes el check-in en línia abans d'arribar. Cada adult s'ha de registrar.","Quan la reserva estigui pagada i el check-in complet, cada hoste rep la seva clau digital per correu electrònic.","Obre l'app TuLlave i introdueix o activa el codi que t'hem enviat.","En arribar, obre la porta de l'edifici des de l'app i després la del teu apartament."],
+ accNote:"La teva clau funciona des de les 16:00 del dia d'arribada fins a les 10:00 del dia de sortida.",accHelp:"No s'obre? Comprova que tens el Bluetooth i les dades activats i truca'ns.",ios:"App Store (iPhone)",android:"Google Play (Android)",
+ bldL:"Edifici del 2021 al bell mig de Castelldefels, a l'avinguda principal.",fac:[["Piscina i solàrium","Piscina exterior al terrat, amb solàrium."],["Bugaderia","Bugaderia al terrat, al costat dels espais comuns."],["Ascensor","Comunica totes les plantes amb el terrat."],["El teu apartament","Cuina equipada, aire condicionat i calefacció, microones, nevera, TV i bany amb dutxa. Alguns tenen balcó."]],
+ locT:"Ubicació",locL:[["200 m","de l'estació de tren"],["1,2 km","de la platja"],["14 km","de l'aeroport"],["20 km","de Barcelona"]],openMap:"Obrir a Google Maps",
+ arrL:"Avinguda de la Constitució, 164 · 08860 Castelldefels",fromAir:"Des de l'aeroport",fromAirD:"L'aeroport de Barcelona-El Prat és a uns 14 km. Pots venir en taxi o en transport públic.",fromAirB:"Ruta des de l'aeroport",fromBcn:"Des de Barcelona",fromBcnD:"Agafa el tren R2 Sud fins a l'estació de Castelldefels: l'edifici és a 200 m.",byCar:"En cotxe",byCarD:"Mira la secció Aparcar per a les zones de pagament i els aparcaments gratuïts.",toBcn:"Anar a Barcelona",locSub:"El que et recomanem per comprar i gaudir a prop de l'apartament."}};
+const VIDS=["puerta","termostato-desbloquear","termostato-modo","diferencial","cafetera"];
+const vid=(f,j)=>`<article class="r vr"><h3>${esc(X[L].vids[j][0])}</h3><p>${esc(X[L].vids[j][1])}</p><video controls playsinline muted preload="none" poster="vid/${f}.jpg"><source src="vid/${f}.mp4" type="video/mp4"></video></article>`;
+const IOS_URL="https://apps.apple.com/app/id1463757987";
+const AND_URL="https://play.google.com/store/search?q=TuLlave%20Smart%20Lock&c=apps";
+
 const ICON={
 super:'<path d="M3 4h2l2.4 10.2a1.5 1.5 0 0 0 1.5 1.1h8.6a1.5 1.5 0 0 0 1.5-1.1L21 8H6.2"/><circle cx="9.5" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/>',
 tr:'<rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M9 21l1.5-4M15 21l-1.5-4"/><circle cx="8.5" cy="14" r=".8"/><circle cx="15.5" cy="14" r=".8"/>',
@@ -187,9 +235,11 @@ see:'<path d="M4 21V9l3-2 3 2v12M14 21V6l3-3 3 3v15M2 21h20M7 13v2M17 10v2"/>',
 shop:'<path d="M5.5 8h13l-1 12.5h-11z"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/>',
 well:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
 bld:'<path d="M4 21h16M6 21V5.5L13 3v18M13 8l5 1.5V21M9 8h1M9 11.5h1M9 15h1M15.5 12h.5M15.5 15.5h.5"/>',
+help:'<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z"/>',
 ct:'<path d="M5 4h4l1.5 4.5-2.5 1.5a11 11 0 0 0 6 6l1.5-2.5L20 15v4a1.5 1.5 0 0 1-1.6 1.5A16.5 16.5 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/>'};
-const TILES=[["super","super"],["transport","tr"],["parking","pk"],["use","use"],["food","food"],["mkt","mkt"],["flor","flor"],["sights","see"],["shop","shop"],["well","well"],["building","bld"],["contact","ct"]];
-const VIEWS=new Set(TILES.map(t=>t[0]));
+const TILES=[["building","bld"],["help","help"],["arrive","tr"],["parking","pk"],["local","shop"],["sights","see"]];
+const LOCAL=[["super","super"],["use","use"],["food","food"],["mkt","mkt"],["flor","flor"],["shop","shop"],["well","well"]];
+const VIEWS=new Set(["access",...TILES.map(t=>t[0]),...LOCAL.map(t=>t[0])]);
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
 const nav=(navigator.language||"es").slice(0,2).toLowerCase();
 let L=LANGS.includes(nav)?nav:"en";
@@ -198,33 +248,54 @@ const i=()=>LANGS.indexOf(L);
 const ORIGIN="Avinguda de la Constitució 164, 08860 Castelldefels";
 const dirUrl=(dest,walk)=>"https://www.google.com/maps/dir/?api=1&origin="+encodeURIComponent(ORIGIN)+"&destination="+encodeURIComponent(dest)+(walk?"&travelmode=walking":"");
 const mapUrl=p=>dirUrl(p.n+", "+(p.a?p.a+(p.drive?"":", 08860 Castelldefels"):"08860 Castelldefels"),!p.drive);
-const tl=k=>{const t=T[L],x=X[L];return {super:C.super[i()],transport:x.tTr,parking:x.tPk,use:C.use[i()],food:C.food[i()],mkt:C.mkt[i()],flor:C.flor[i()],sights:x.tSee,shop:C.shop[i()],well:C.well[i()],building:x.tBld,contact:x.tCt}[k]};
+const tl=k=>{const x=X[L];return C[k]?C[k][i()]:{access:x.tAcc,help:x.tHelp,building:x.tBld,arrive:x.tArr,parking:x.tPk,local:x.tLoc,sights:x.tSee,contact:x.tCt}[k]};
 const go=(href,label,alt)=>`<a class="go${alt?" alt":""}" href="${esc(href)}" target="_blank" rel="noopener">${esc(label)}</a>`;
 const mins=t=>t?`<span class="mins">≈ ${t} ${esc(X[L].minS)}</span>`:"";
+const ml=()=>T[L].map.replace(" →","");
 function row(p){const t=T[L];
- return `<article class="r"><h3>${esc(p.n)}${p.near?`<span class="tag">${esc(t.near)}</span>`:""}</h3>${mins(p.t)}${p.a?`<span class="meta" style="grid-column:1/-1">${esc(p.a)}</span>`:""}<p>${esc(p.d[i()])}</p><div class="acts">${p.noMap?"":go(mapUrl(p),t.map.replace(" →",""))}${p.w?go(p.w,t.web.replace(" →",""),1):""}</div></article>`}
-const head=k=>`<div class="vhead"><a class="back" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>${esc(X[L].back)}</a><h2>${esc(tl(k))}</h2></div>`;
+ return `<article class="r"><h3>${esc(p.n)}${p.near?`<span class="tag">${esc(t.near)}</span>`:""}</h3>${mins(p.t)}${p.a?`<span class="meta" style="grid-column:1/-1">${esc(p.a)}</span>`:""}<p>${esc(p.d[i()])}</p><div class="acts">${p.noMap?"":go(mapUrl(p),ml())}${p.w?go(p.w,t.web.replace(" →",""),1):""}</div></article>`}
+const head=(k,to)=>`<div class="vhead"><a class="back" href="#${to||""}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>${esc(X[L].back)}</a><h2>${esc(tl(k))}</h2></div>`;
+const tile=([k,ic])=>`<a class="tile" href="#${k}"><svg viewBox="0 0 24 24" aria-hidden="true">${ICON[ic]}</svg>${esc(tl(k))}</a>`;
+const KEY='<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/>';
 function home(){const t=T[L],x=X[L];
- const near=P.filter(p=>p.t&&p.t<=8||p.near).sort((a,b)=>(a.t||5)-(b.t||5)).slice(0,7);
- const st={n:t.stT,t:3,d:[t.stP,t.stP,t.stP,t.stP],q:"Estació de Castelldefels"};
+ const near=P.filter(p=>p.t&&p.t<=8||p.near).sort((a,b)=>(a.t||5)-(b.t||5)).slice(0,6);
  return `<section class="hello"><img src="img/piscina.jpg" alt=""><h1>${esc(x.hello)}</h1><p>${esc(x.sub)}</p></section>
- <nav class="tiles">${TILES.map(([k,ic])=>`<a class="tile" href="#${k}"><svg viewBox="0 0 24 24" aria-hidden="true">${ICON[ic]}</svg>${esc(tl(k))}</a>`).join("")}</nav>
+ <a class="acc" href="#access"><svg viewBox="0 0 24 24" aria-hidden="true">${KEY}</svg><span><b>${esc(x.tAcc)}</b><small>${esc(x.tAccS)}</small></span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+ <nav class="tiles main">${TILES.map(tile).join("")}</nav>
  <h2 class="sec">${esc(x.nearT)}</h2>
- <div class="rows"><article class="r"><h3>${esc(t.stT)}</h3>${mins(3)}<p>${esc(t.stP)}</p><div class="acts">${go(dirUrl(st.q,true),t.map.replace(" →",""))}<a class="go alt" href="#transport">${esc(x.tTr)}</a></div></article>${near.map(row).join("")}</div>
+ <div class="rows"><article class="r"><h3>${esc(t.stT)}</h3>${mins(3)}<p>${esc(t.stP)}</p><div class="acts">${go(dirUrl("Estació de Castelldefels",true),ml())}</div></article>${near.map(row).join("")}</div>
  ${contact()}`}
 function contact(){const t=T[L],x=X[L];
- return `<section class="contact"><h3>${esc(t.helpT)}</h3><p>${esc(t.helpL)}</p><p>contact@artapartmentsbcn.com · +34 681 920 239</p><div class="acts" style="display:flex;gap:8px;flex-wrap:wrap"><a class="go" href="tel:+34681920239">${esc(x.call)}</a><a class="go" style="background:transparent;border:1px solid rgba(255,255,255,.35)" href="mailto:contact@artapartmentsbcn.com">${esc(x.mail)}</a></div></section>`}
+ return `<section class="contact"><h3>${esc(t.helpT)}</h3><p>${esc(t.helpL)}</p><p>contact@artapartmentsbcn.com · +34 681 920 239</p><div style="display:flex;gap:8px;flex-wrap:wrap"><a class="go" href="tel:+34681920239">${esc(x.call)}</a><a class="go" style="background:transparent;border:1px solid rgba(255,255,255,.35)" href="mailto:contact@artapartmentsbcn.com">${esc(x.mail)}</a></div></section>`}
 function view(k){const t=T[L],x=X[L];
- if(C[k]){const items=P.filter(p=>p.c===k).sort((a,b)=>(a.t||(a.near?5:99))-(b.t||(b.near?5:99)));return head(k)+`<div class="rows">${items.map(row).join("")}</div><p class="note">${esc(t.note)}</p>`}
- if(k==="transport")return head(k)+`<div class="big"><span>${esc(t.stT)}</span><span class="n">${esc(t.stD)}</span><p>${esc(t.stP)}</p>${go(dirUrl("Estació de Castelldefels",true),t.map.replace(" →",""))}</div>
-  <div class="rows"><article class="r"><h3>${esc(t.trainT)}</h3><p>${esc(t.trainD)}</p><ul class="lines"><li><span class="ln">R2S</span><span>Castelldefels → Barcelona Sants · Passeig de Gràcia</span></li></ul></article>
+ if(C[k]){const items=P.filter(p=>p.c===k).sort((a,b)=>(a.t||(a.near?5:99))-(b.t||(b.near?5:99)));return head(k,"local")+`<div class="rows">${items.map(row).join("")}</div><p class="note">${esc(t.note)}</p>`}
+ if(k==="access")return head(k)+`<p class="lead">${esc(x.accL)}</p>
+  <ol class="steps">${x.accSteps.map((s,j)=>`<li><span class="num">${j+1}</span><span>${esc(s)}${j===0?`<span class="acts" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">${go(IOS_URL,x.ios)}${go(AND_URL,x.android)}</span>`:""}</span></li>`).join("")}</ol>
+  <div class="rows" style="margin-top:10px">${vid("puerta",0)}</div>
+  <div class="big" style="margin-top:14px"><p style="color:#fff;font-size:17px">${esc(x.accNote)}</p><p>${esc(x.accHelp)}</p><a class="go" href="tel:+34681920239">${esc(x.call)} · +34 681 920 239</a></div>`;
+ if(k==="building")return head(k)+`<p class="lead">${esc(x.bldL)}</p><div class="photo"><img src="img/piscina2.jpg" alt=""></div>
+  <div class="rows" style="margin-top:12px">${x.fac.map(f=>`<article class="r"><h3>${esc(f[0])}</h3><p>${esc(f[1])}</p></article>`).join("")}</div>
+  <article class="r" style="margin-top:10px"><h3>${esc(x.fac[1][0])}</h3><p>${esc(x.lavWhere)}</p><img class="lav" src="img/lavanderia.jpg" alt=""></article>
+  <div class="gal"><div class="photo"><img src="img/lobby.jpg" alt=""></div><div class="photo"><img src="img/salon.jpg" alt=""></div></div>
+  <h2 class="sec" style="margin-top:22px">${esc(x.locT)}</h2><div class="stats">${x.locL.map(s=>`<div><b>${esc(s[0])}</b><span>${esc(s[1])}</span></div>`).join("")}</div>
+  <p class="tip">${esc(x.arrL)}</p><div class="acts" style="display:flex;margin-top:8px">${go("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(ORIGIN),x.openMap)}</div>`;
+ if(k==="arrive")return head(k)+`<div class="big"><span class="n" style="font-size:24px">${esc(x.arrL)}</span>${go("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(ORIGIN),x.openMap)}</div>
+  <div class="rows"><article class="r"><h3>${esc(x.fromAir)}</h3><p>${esc(x.fromAirD)}</p><div class="acts">${go("https://www.google.com/maps/dir/?api=1&origin="+encodeURIComponent("Aeropuerto Josep Tarradellas Barcelona-El Prat")+"&destination="+encodeURIComponent(ORIGIN),x.fromAirB)}</div></article>
+  <article class="r"><h3>${esc(x.fromBcn)}</h3><p>${esc(x.fromBcnD)}</p></article>
+  <article class="r"><h3>${esc(x.byCar)}</h3><p>${esc(x.byCarD)}</p><div class="acts"><a class="go alt" href="#parking">${esc(x.tPk)}</a></div></article></div>
+  <h2 class="sec" style="margin-top:22px">${esc(x.toBcn)}</h2>
+  <div class="rows"><article class="r"><h3>${esc(t.stT)}</h3>${mins(3)}<p>${esc(t.stP)}</p><div class="acts">${go(dirUrl("Estació de Castelldefels",true),ml())}</div></article>
+  <article class="r"><h3>${esc(t.trainT)}</h3><p>${esc(t.trainD)}</p><ul class="lines"><li><span class="ln">R2S</span><span>Castelldefels → Barcelona Sants · Passeig de Gràcia</span></li></ul></article>
   <article class="r"><h3>${esc(t.busT)}</h3><p>${esc(t.busD)}</p><ul class="lines">${[["L94",t.l94],["L95",t.l95],["E95",t.e95],["L97",t.l97],["N16",t.n16]].map(z=>`<li><span class="ln">${z[0]}</span><span>${esc(z[1])}</span></li>`).join("")}</ul></article></div><p class="tip">${esc(t.trTip)}</p>`;
  if(k==="parking")return head(k)+`<p class="lead">${esc(t.pkL)}</p><div class="rows">${[["zb",t.zb,t.zbD],["zv",t.zv,t.zvD],["zw",t.zw,t.zwD],["zy",t.zy,t.zyD]].map(z=>`<div class="zone"><div class="sw ${z[0]}"></div><div><h3>${esc(z[1])}</h3><p>${esc(z[2])}</p></div></div>`).join("")}</div>
-  <h2 class="sec" style="margin-top:22px">${esc(t.freeT)}</h2><div class="rows">${FREE.map(f=>`<article class="r"><h3>${esc(f.n[i()])}</h3>${mins(f.t)}<div class="acts">${go(dirUrl(f.ll,false),t.map.replace(" →",""))}</div></article>`).join("")}</div><p class="tip">${esc(t.pkTip)}</p>`;
- if(k==="sights")return head(k)+`<div class="photo" style="margin-bottom:10px"><img src="img/castillo.jpg" alt=""></div><div class="rows">${[MUST[1],...MUST.filter((m,j)=>j!==1)].map(m=>`<article class="r"><h3>${esc(m.n[i()])}</h3><p>${esc(m.d[i()])}</p><div class="acts">${go(dirUrl(m.q,false),t.map.replace(" →",""))}</div></article>`).join("")}</div>`;
- if(k==="building")return head(k)+`<p class="lead">${esc(t.bldL)}</p><div class="photo"><img src="img/piscina2.jpg" alt=""></div><div class="gal"><div class="photo"><img src="img/lobby.jpg" alt=""></div><div class="photo"><img src="img/salon.jpg" alt=""></div></div><p class="tip">Av. de la Constitució, 164 · 08860 Castelldefels</p>`;
+  <h2 class="sec" style="margin-top:22px">${esc(t.freeT)}</h2><div class="rows">${FREE.map(f=>`<article class="r"><h3>${esc(f.n[i()])}</h3>${mins(f.t)}<div class="acts">${go(dirUrl(f.ll,false),ml())}</div></article>`).join("")}</div><p class="tip">${esc(t.pkTip)}</p>`;
+ if(k==="local"){const near=P.filter(p=>p.t&&p.t<=4||p.near).sort((a,b)=>(a.t||5)-(b.t||5));
+  return head(k)+`<p class="lead">${esc(x.locSub)}</p><nav class="tiles">${LOCAL.map(tile).join("")}</nav><h2 class="sec">${esc(x.nearT)}</h2><div class="rows">${near.map(row).join("")}</div>`}
+ if(k==="sights")return head(k)+`<div class="photo" style="margin-bottom:10px"><img src="img/castillo.jpg" alt=""></div><div class="rows">${[MUST[1],...MUST.filter((m,j)=>j!==1)].map(m=>`<article class="r"><h3>${esc(m.n[i()])}</h3><p>${esc(m.d[i()])}</p><div class="acts">${go(dirUrl(m.q,false),ml())}</div></article>`).join("")}</div>`;
+ if(k==="help")return head(k)+`<p class="lead">${esc(x.helpL)}</p><div class="rows">${VIDS.map((f,j)=>vid(f,j)).join("")}</div>`;
  if(k==="contact")return head(k)+contact().replace('class="contact"','class="contact" style="margin-top:0"')+`<div class="rows" style="margin-top:14px"><article class="r"><h3>${esc(t.moreT)}</h3><p>${esc(t.moreL)}</p><div class="acts">${go("https://www.associaciocec.org/associats/","associaciocec.org",1)}</div></article></div>`;
  return home()}
+
 function render(){
  document.documentElement.lang=L;
  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===L));
