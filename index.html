@@ -3,129 +3,142 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Descubre Castelldefels</title>
+<title>Descubre Castelldefels · ART Apartments</title>
+<link rel="icon" href="img/icon.png">
+<link rel="apple-touch-icon" href="img/icon.png">
+<meta name="theme-color" content="#1e2838">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-/* VOICE: warm host's welcome, short and useful, like a note left on the kitchen table
-   IDEA: a seaside town map card a host hands guests on arrival
-   PICTURE: layered Mediterranean scene — sea, beach, the castle on its hill, the sun
-   COLOUR and TYPE: sea teal dominant, sand support, coral accent; Outfit + Inter
-   LAYOUT: hero scene, language switch, must-sees, filterable list of local shops, contact */
+/* VOICE: a calm, upscale host's welcome note
+   IDEA: the ART Apartments brand card — thin geometric type, the open gold frame from the logo
+   PICTURE: real photos of the building (rooftop pool, lobby, apartments) and the castle
+   COLOUR and TYPE: ART gold #b08e68, navy #1e2838, ivory; Barlow light + medium like the logo
+   LAYOUT: photo hero with logo, the building, must-sees, local shops, contact */
 :root{color-scheme:light dark;
---bg:light-dark(#fbf7ef,#0c1d22);--ink:light-dark(#12262b,#eef4f3);--mute:light-dark(#4f6267,#a7bcbf);
---sea:light-dark(#0e6e7e,#0f5664);--sand:light-dark(#f1e2c6,#1a3036);--card:light-dark(#ffffff,#13292f);
---line:light-dark(#e6dcc8,#24414a);--coral:#ff5a3c}
+--gold:#b08e68;--gold-ink:light-dark(#8a6a45,#d6b48d);--navy:#1e2838;
+--bg:light-dark(#faf8f5,#121925);--ink:light-dark(#1e2838,#f1ece5);--mute:light-dark(#525a66,#b3b9c2);
+--soft:light-dark(#f2ece3,#1a2332);--card:light-dark(#ffffff,#1c2636);--line:light-dark(#e6ddd0,#2b3646)}
 :root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:clip}
-h1,h2,h3{font-family:Outfit,system-ui,sans-serif;line-height:1.05;text-wrap:balance;margin:0}
-h1{font-size:clamp(36px,6vw,52px);color:#fff}
-h2{font-size:clamp(26px,4vw,34px);margin-bottom:6px}
-h3{font-size:19px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 Barlow,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{line-height:1.08;text-wrap:balance;margin:0;font-weight:400}
+h1{font-size:clamp(38px,6.4vw,64px);font-weight:300;color:#fff}
+h2{font-size:clamp(28px,4vw,40px);font-weight:300;margin-bottom:8px}
+h3{font-size:20px;font-weight:500}
 a{color:inherit}
-.band{padding:clamp(28px,4vw,64px) max(5vw,16px)}
+img{display:block;max-width:100%}
+.band{padding:clamp(36px,5vw,72px) max(5vw,16px)}
 .wrap{max-width:1240px;margin:0 auto}
-header{background:var(--sea);color:#fff;position:relative}
-.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:32px;align-items:center}
-.hero p{font-size:17px;max-width:34em;color:#e3f3f3;margin:14px 0 22px}
-.scene{aspect-ratio:16/11;width:100%;border-radius:22px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.25)}
-.scene svg{width:100%;height:100%;display:block}
-.lang{display:inline-flex;background:rgba(255,255,255,.14);border-radius:999px;padding:4px}
-.lang button{font:600 15px Inter,sans-serif;border:0;background:none;color:#fff;min-height:44px;padding:0 14px;border-radius:999px;cursor:pointer}
-.lang button[aria-pressed=true]{background:#fff;color:var(--sea)}
-button:focus-visible,a:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
-.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:26px;font-weight:600}
-.lead{color:var(--mute);margin:0 0 22px;max-width:60ch}
-.must{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
-.m{background:var(--sand);border-radius:18px;padding:20px}
-.m h3{margin-bottom:6px}.m p{margin:0;color:var(--mute)}
-.m .k{display:inline-block;font-size:13px;font-weight:600;color:var(--sea);margin-bottom:8px}
-:root[data-theme=dark] .m .k{color:#7fd3dc}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .m .k{color:#7fd3dc}}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
-.chips button{font:600 15px Inter,sans-serif;min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
-.chips button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.lead{color:var(--mute);margin:0 0 26px;max-width:62ch}
+/* hero */
+header{position:relative;min-height:min(88vh,760px);display:flex;flex-direction:column;color:#fff;background:var(--navy);overflow:hidden}
+header>img.bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+header::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(30,40,56,.92) 0%,rgba(30,40,56,.6) 45%,rgba(30,40,56,.1) 100%),linear-gradient(0deg,rgba(30,40,56,.7),transparent 40%)}
+header>*{position:relative;z-index:1}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:24px max(5vw,16px)}
+.logo{width:clamp(130px,16vw,180px);height:auto}
+.hero{margin-top:auto;padding:0 max(5vw,16px) clamp(40px,7vw,90px);max-width:1240px;width:100%;margin-inline:auto}
+.hero .frame{border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);padding:0 0 22px 24px;max-width:640px}
+.hero p{font-size:18px;color:#e9e4dc;margin:16px 0 0;max-width:34em}
+.lang{display:inline-flex;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:3px}
+.lang button{font:500 15px Barlow,sans-serif;border:0;background:none;color:#fff;min-height:44px;min-width:44px;padding:0 12px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--gold);color:#fff}
+button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+/* building */
+.bld{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.6fr);gap:clamp(24px,4vw,56px);align-items:start}
+.addr{display:inline-block;margin-top:6px;font-weight:500;color:var(--gold-ink)}
+.gal{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.gal figure{margin:0;position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/3;background:var(--soft)}
+.gal figure:first-child{grid-column:1/-1;aspect-ratio:16/8}
+.gal img{width:100%;height:100%;object-fit:cover}
+.gal figcaption{position:absolute;left:10px;bottom:10px;background:rgba(30,40,56,.82);color:#fff;font-size:14px;font-weight:500;padding:4px 10px;border-radius:999px}
+/* must-sees */
+.mustg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr);gap:16px}
+.feat{position:relative;border-radius:18px;overflow:hidden;min-height:420px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:24px}
+.feat img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.feat::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(30,40,56,.9),rgba(30,40,56,0) 60%)}
+.feat>*:not(img){position:relative;z-index:1}
+.feat p{margin:6px 0 0;color:#ece6dd}
+.feat .map{color:#fff}
+.must{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.m{background:var(--soft);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:6px}
+.m p{margin:0;color:var(--mute)}
+.k{font-size:14px;font-weight:500;color:var(--gold-ink)}
+.feat .k{color:#e8cba7}
+/* shops */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.chips button{font:500 15px Barlow,sans-serif;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.chips button[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
 .list{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
 .p{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:6px}
-.p .c{font-size:13px;color:var(--mute)}
-.p p{margin:0;font-size:15px}
-.p .a{font-size:14px;color:var(--mute)}
-.p .row{margin-top:auto;padding-top:8px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
-.near{font-size:13px;font-weight:600;background:var(--coral);color:#fff;border-radius:999px;padding:3px 10px;white-space:nowrap}
-.map{font-weight:600;font-size:15px;text-decoration:none;color:var(--sea);min-height:44px;display:inline-flex;align-items:center}
-:root[data-theme=dark] .map{color:#7fd3dc}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .map{color:#7fd3dc}}
-footer{background:var(--sea);color:#fff}
-footer .g{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px}
-footer p{margin:8px 0;color:#e3f3f3}
-.small{font-size:13px;color:#cfe8e8}
-@media(max-width:760px){.hero,footer .g{grid-template-columns:minmax(0,1fr)}}
-@media (prefers-reduced-motion:no-preference){.sun{animation:rise 3s ease-out both}@keyframes rise{from{transform:translateY(40px);opacity:.4}}}
+.p .c{font-size:14px;color:var(--gold-ink);font-weight:500}
+.p p{margin:0;font-size:16px}
+.p .a{font-size:15px;color:var(--mute)}
+.row{margin-top:auto;padding-top:8px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.near{font-size:13px;font-weight:600;background:var(--gold);color:#fff;border-radius:999px;padding:3px 10px;white-space:nowrap}
+.map{font-weight:600;font-size:16px;text-decoration:none;color:var(--gold-ink);min-height:44px;display:inline-flex;align-items:center}
+/* footer */
+footer{background:var(--navy);color:#fff}
+footer .g{display:grid;grid-template-columns:auto minmax(0,1.2fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+footer p{margin:8px 0;color:#dfe3ea}
+footer .logo{width:150px}
+footer a.map{color:#e8cba7}
+.small{font-size:14px;color:#b9c0cb}
+@media(max-width:860px){.bld,.mustg,footer .g{grid-template-columns:minmax(0,1fr)}.feat{min-height:360px}}
+@media(max-width:560px){.must{grid-template-columns:minmax(0,1fr)}.gal{grid-template-columns:minmax(0,1fr)}.gal figure:first-child{aspect-ratio:4/3}header{min-height:640px}}
+@media (prefers-reduced-motion:no-preference){header>img.bgimg{animation:zoom 14s ease-out both}@keyframes zoom{from{transform:scale(1.08)}}}
 </style>
 </head>
 <body>
-<header class="band">
- <div class="wrap">
-  <div class="top"><span>ART Apartments · Castelldefels</span>
-   <div class="lang" role="group" aria-label="Idioma / Language">
-    <button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button><button data-l="fr" aria-pressed="false">FR</button><button data-l="ca" aria-pressed="false">CA</button>
-   </div>
-  </div>
-  <div class="hero">
-   <div>
-    <h1 data-t="h1"></h1>
-    <p data-t="intro"></p>
-   </div>
-   <div class="scene" aria-hidden="true">
-    <svg viewBox="0 0 640 440" preserveAspectRatio="xMidYMid slice">
-     <defs>
-      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffcf9e"/><stop offset=".6" stop-color="#ffe9cf"/></linearGradient>
-      <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2aa3b3"/><stop offset="1" stop-color="#0b5b68"/></linearGradient>
-      <linearGradient id="hill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6f9a5c"/><stop offset="1" stop-color="#3f6b3c"/></linearGradient>
-      <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6dfb2"/><stop offset="1" stop-color="#e5c088"/></linearGradient>
-     </defs>
-     <rect width="640" height="440" fill="url(#sky)"/>
-     <circle class="sun" cx="470" cy="150" r="54" fill="#ff7a52"/>
-     <path d="M0 230 C120 170 210 190 300 150 C360 125 420 170 520 190 C580 200 620 196 640 200 V290 H0Z" fill="#9cbf86" opacity=".7"/>
-     <path d="M0 250 C70 220 120 160 190 150 C250 142 290 200 360 232 L360 300 H0Z" fill="url(#hill)"/>
-     <g transform="translate(150 96)">
-      <rect x="0" y="40" width="80" height="44" fill="#d8b27a"/><rect x="0" y="40" width="80" height="6" fill="#f0d3a3"/>
-      <rect x="54" y="8" width="22" height="76" fill="#c99b62"/><rect x="54" y="8" width="4" height="76" fill="#e8c592"/>
-      <path d="M50 8 h30 v-8 h-6 v4 h-6 v-4 h-6 v4 h-6 v-4 h-6z" fill="#c99b62"/>
-      <path d="M0 40 h80 v-6 h-8 v3 h-8 v-3 h-8 v3 h-8 v-3 h-8 v3 h-8 v-3 h-8 v3 h-8 v-3 h-8 z" fill="#c99b62"/>
-      <rect x="14" y="56" width="10" height="14" rx="5" fill="#7a5a36"/><rect x="61" y="22" width="8" height="12" rx="4" fill="#7a5a36"/>
-     </g>
-     <rect y="280" width="640" height="90" fill="url(#sea)"/>
-     <g stroke="#bfe9ee" stroke-width="3" stroke-linecap="round" opacity=".7" fill="none">
-      <path d="M40 305 q14 -8 28 0 q14 8 28 0"/><path d="M260 322 q14 -8 28 0 q14 8 28 0"/><path d="M470 300 q14 -8 28 0 q14 8 28 0"/><path d="M380 345 q14 -8 28 0"/>
-     </g>
-     <path d="M0 360 C160 345 300 372 420 356 C520 344 590 352 640 348 V440 H0Z" fill="url(#sand)"/>
-     <g transform="translate(440 300)"><path d="M0 40 L28 -50 L28 40Z" fill="#fff"/><path d="M30 40 L30 -40 L58 40Z" fill="#ffd9cf"/><path d="M-14 42 h86 l-10 14 h-66z" fill="#ff5a3c"/></g>
-     <g transform="translate(110 360)"><rect x="-2" y="-62" width="4" height="70" fill="#8a6a45"/><path d="M-44 -54 Q0 -92 44 -54Z" fill="#ff5a3c"/><path d="M-44 -54 Q-22 -70 0 -54 Q22 -70 44 -54" fill="#ffb199"/></g>
-    </svg>
-   </div>
+<header>
+ <img class="bgimg" src="img/piscina.jpg" alt="">
+ <div class="top">
+  <img class="logo" src="img/logo-white.png" alt="ART Apartments">
+  <div class="lang" role="group" aria-label="Idioma / Language">
+   <button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button><button data-l="fr" aria-pressed="false">FR</button><button data-l="ca" aria-pressed="false">CA</button>
   </div>
  </div>
+ <div class="hero"><div class="frame">
+  <h1 data-t="h1"></h1>
+  <p data-t="intro"></p>
+ </div></div>
 </header>
 
-<section class="band"><div class="wrap">
- <h2 data-t="mustT"></h2><p class="lead" data-t="mustL"></p>
- <div class="must" id="must"></div>
+<section class="band"><div class="wrap bld">
+ <div>
+  <h2 data-t="bldT"></h2>
+  <p class="lead" data-t="bldL" style="margin-bottom:8px"></p>
+  <span class="addr">Av. de la Constitució, 164 · Castelldefels</span>
+ </div>
+ <div class="gal">
+  <figure><img src="img/piscina2.jpg" alt="" loading="lazy"><figcaption data-t="capPool"></figcaption></figure>
+  <figure><img src="img/lobby.jpg" alt="" loading="lazy"><figcaption data-t="capLobby"></figcaption></figure>
+  <figure><img src="img/salon.jpg" alt="" loading="lazy"><figcaption data-t="capApt"></figcaption></figure>
+ </div>
 </div></section>
 
-<section class="band" style="background:var(--sand)"><div class="wrap">
+<section class="band" style="background:var(--soft)"><div class="wrap">
+ <h2 data-t="mustT"></h2><p class="lead" data-t="mustL"></p>
+ <div class="mustg">
+  <div class="feat" id="feat"><img src="img/castillo.jpg" alt="" loading="lazy"></div>
+  <div class="must" id="must"></div>
+ </div>
+</div></section>
+
+<section class="band"><div class="wrap">
  <h2 data-t="shopT"></h2><p class="lead" data-t="shopL"></p>
  <div class="chips" id="chips" role="group"></div>
  <div class="list" id="list"></div>
 </div></section>
 
 <footer class="band"><div class="wrap g">
+ <img class="logo" src="img/logo-white.png" alt="ART Apartments">
  <div><h2 data-t="helpT"></h2><p data-t="helpL"></p>
-  <p><strong>ART Apartments</strong> · Av. de la Constitució, 164, 08860 Castelldefels</p>
-  <p>contact@artapartmentsbcn.com · +34 681 920 239 · +34 681 920 244</p></div>
+  <p>Av. de la Constitució, 164, 08860 Castelldefels</p>
+  <p>contact@artapartmentsbcn.com<br>+34 681 920 239 · +34 681 920 244</p></div>
  <div><h3 data-t="moreT"></h3><p data-t="moreL"></p>
-  <p><a class="map" style="color:#fff" href="https://www.associaciocec.org/associats/">associaciocec.org</a></p>
+  <p><a class="map" href="https://www.associaciocec.org/associats/">associaciocec.org →</a></p>
   <p class="small" data-t="note"></p></div>
 </div></footer>
 
@@ -133,25 +146,25 @@ footer p{margin:8px 0;color:#e3f3f3}
 {
 const LANGS=["es","en","fr","ca"];
 const T={
-es:{h1:"Bienvenido a Castelldefels",intro:"Playa, pueblo y montaña a pocos minutos de tu apartamento. Te dejamos una selección de lo imprescindible y de los comercios locales del centro para que disfrutes la ciudad como alguien de aquí.",
+es:{bldT:"Tu edificio",bldL:"Ascensor a todas las plantas y azotea con piscina, zona de lavandería y espacios comunes. En pleno centro, a pocos minutos a pie de tiendas, restaurantes y la estación.",capPool:"Azotea con piscina",capLobby:"Entrada",capApt:"Apartamentos",h1:"Bienvenido a Castelldefels",intro:"Playa, pueblo y montaña a pocos minutos de tu apartamento. Te dejamos una selección de lo imprescindible y de los comercios locales del centro para que disfrutes la ciudad como alguien de aquí.",
 mustT:"Lo imprescindible",mustL:"Lo que no te puedes perder durante tu estancia. «Cómo llegar» abre Google Maps con la ruta desde el apartamento.",
 shopT:"Comercio local",shopL:"Panaderías, vinos, mercado, bienestar y tiendas del centro. Los marcados «En tu avenida» están en la misma Av. de la Constitució que el edificio.",
 helpT:"¿Necesitas algo?",helpL:"No hay recepción física, pero el equipo te atiende por correo y teléfono durante tu estancia.",
 moreT:"Más comercios",moreL:"Todos estos negocios forman parte de CEC, la asociación de comercio y empresa de Castelldefels. En su web tienes el directorio completo.",
 note:"Horarios y servicios pueden cambiar: confírmalos con cada comercio antes de ir.",near:"En tu avenida",map:"Cómo llegar →",all:"Todo"},
-en:{h1:"Welcome to Castelldefels",intro:"Beach, old town and hills just minutes from your apartment. Here is our pick of the must-sees and the local shops in the centre, so you can enjoy the town like a local.",
+en:{bldT:"Your building",bldL:"Lift to every floor and a rooftop with pool, laundry room and shared spaces. Right in the centre, a short walk from shops, restaurants and the station.",capPool:"Rooftop pool",capLobby:"Entrance",capApt:"Apartments",h1:"Welcome to Castelldefels",intro:"Beach, old town and hills just minutes from your apartment. Here is our pick of the must-sees and the local shops in the centre, so you can enjoy the town like a local.",
 mustT:"Must-sees",mustL:"What you shouldn't miss during your stay. “Directions” opens Google Maps with the route from the apartment.",
 shopT:"Local shops",shopL:"Bakeries, wine, fresh produce, wellness and boutiques in the centre. Those tagged “On your avenue” are on Av. de la Constitució, the same street as the building.",
 helpT:"Need anything?",helpL:"There's no front desk, but our team is available by email and phone throughout your stay.",
 moreT:"More local shops",moreL:"All these businesses belong to CEC, the Castelldefels retail and business association. Their website has the full directory.",
 note:"Opening hours and services may change: please check with each shop before you go.",near:"On your avenue",map:"Directions →",all:"All"},
-fr:{h1:"Bienvenue à Castelldefels",intro:"Plage, vieille ville et collines à quelques minutes de votre appartement. Voici notre sélection des incontournables et des commerces locaux du centre, pour profiter de la ville comme un habitant.",
+fr:{bldT:"Votre immeuble",bldL:"Ascenseur à tous les étages et toit-terrasse avec piscine, buanderie et espaces communs. En plein centre, à quelques minutes à pied des commerces, des restaurants et de la gare.",capPool:"Toit-terrasse avec piscine",capLobby:"Entrée",capApt:"Appartements",h1:"Bienvenue à Castelldefels",intro:"Plage, vieille ville et collines à quelques minutes de votre appartement. Voici notre sélection des incontournables et des commerces locaux du centre, pour profiter de la ville comme un habitant.",
 mustT:"Les incontournables",mustL:"Ce qu'il ne faut pas manquer pendant votre séjour. « Itinéraire » ouvre Google Maps avec le trajet depuis l'appartement.",
 shopT:"Commerces locaux",shopL:"Boulangeries, vins, produits frais, bien-être et boutiques du centre. Ceux marqués « Sur votre avenue » se trouvent sur l'Av. de la Constitució, la même rue que l'immeuble.",
 helpT:"Besoin d'aide ?",helpL:"Il n'y a pas de réception sur place, mais notre équipe reste joignable par e-mail et par téléphone pendant tout votre séjour.",
 moreT:"Plus de commerces",moreL:"Tous ces commerces font partie du CEC, l'association du commerce et des entreprises de Castelldefels. Leur site propose l'annuaire complet.",
 note:"Les horaires et services peuvent changer : vérifiez auprès de chaque commerce avant de vous déplacer.",near:"Sur votre avenue",map:"Itinéraire →",all:"Tout"},
-ca:{h1:"Benvingut a Castelldefels",intro:"Platja, poble i muntanya a pocs minuts del teu apartament. Et deixem una selecció d'imprescindibles i de comerços locals del centre perquè gaudeixis de la ciutat com algú d'aquí.",
+ca:{bldT:"El teu edifici",bldL:"Ascensor a totes les plantes i terrat amb piscina, bugaderia i espais comuns. Al bell mig del centre, a pocs minuts a peu de botigues, restaurants i l'estació.",capPool:"Terrat amb piscina",capLobby:"Entrada",capApt:"Apartaments",h1:"Benvingut a Castelldefels",intro:"Platja, poble i muntanya a pocs minuts del teu apartament. Et deixem una selecció d'imprescindibles i de comerços locals del centre perquè gaudeixis de la ciutat com algú d'aquí.",
 mustT:"Imprescindibles",mustL:"El que no et pots perdre durant l'estada. «Com arribar-hi» obre Google Maps amb la ruta des de l'apartament.",
 shopT:"Comerç local",shopL:"Fleques, vins, mercat, benestar i botigues del centre. Els marcats «A la teva avinguda» són a la mateixa Av. de la Constitució que l'edifici.",
 helpT:"Necessites alguna cosa?",helpL:"No hi ha recepció física, però l'equip t'atén per correu i telèfon durant tota l'estada.",
@@ -203,7 +216,9 @@ function render(){
  document.documentElement.lang=L;
  document.querySelectorAll("[data-t]").forEach(e=>e.textContent=T[L][e.dataset.t]);
  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===L));
- document.getElementById("must").innerHTML=MUST.map(m=>`<div class="m"><span class="k">${esc(m.k[i()])}</span><h3>${esc(m.n[i()])}</h3><p>${esc(m.d[i()])}</p><a class="map" href="${esc(dirUrl(m.q,false))}" target="_blank" rel="noopener">${esc(T[L].map)}</a></div>`).join("");
+ const mi=m=>`<span class="k">${esc(m.k[i()])}</span><h3>${esc(m.n[i()])}</h3><p>${esc(m.d[i()])}</p><a class="map" href="${esc(dirUrl(m.q,false))}" target="_blank" rel="noopener">${esc(T[L].map)}</a>`;
+ const feat=document.getElementById("feat");feat.querySelectorAll(":scope>:not(img)").forEach(e=>e.remove());feat.insertAdjacentHTML("beforeend",mi(MUST[1]));
+ document.getElementById("must").innerHTML=MUST.filter((m,j)=>j!==1).map(m=>`<div class="m"><span class="k">${esc(m.k[i()])}</span><h3>${esc(m.n[i()])}</h3><p>${esc(m.d[i()])}</p><a class="map" href="${esc(dirUrl(m.q,false))}" target="_blank" rel="noopener">${esc(T[L].map)}</a></div>`).join("");
  const keys=["all",...Object.keys(C)];
  document.getElementById("chips").innerHTML=keys.map(k=>`<button data-f="${k}" aria-pressed="${F===k}">${esc(k==="all"?T[L].all:C[k][i()])}</button>`).join("");
  const items=P.filter(p=>F==="all"||p.c===F).sort((a,b)=>(b.near||0)-(a.near||0));
