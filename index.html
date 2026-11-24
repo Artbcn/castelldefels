@@ -272,6 +272,7 @@ const KEY='<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/
 function home(){const t=T[L],x=X[L];
  const near=P.filter(p=>p.t&&p.t<=8||p.near).sort((a,b)=>(a.t||5)-(b.t||5)).slice(0,6);
  return `<section class="hello"><img src="img/piscina.jpg" alt=""><h1>${esc(x.hello)}</h1><p>${esc(x.sub)}</p></section>
+ <a class="bookcta" href="https://artapartmentsbcn.com/" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:10px;margin:14px 0;padding:18px 16px;border-radius:16px;background:#b08e68;color:#fff;font-size:20px;font-weight:700;text-decoration:none;letter-spacing:.3px;box-shadow:0 6px 18px rgba(176,142,104,.45)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>${esc(x.book)}</a>
  <a class="acc" href="#access"><svg viewBox="0 0 24 24" aria-hidden="true">${KEY}</svg><span><b>${esc(x.tAcc)}</b><small>${esc(x.tAccS)}</small></span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
  ${wifi()}
  <nav class="tiles main">${TILES.map(tile).join("")}</nav>
