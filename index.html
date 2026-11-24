@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Descubre Castelldefels</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: warm host's welcome, short and useful, like a note left on the kitchen table
+   IDEA: a seaside town map card a host hands guests on arrival
+   PICTURE: layered Mediterranean scene — sea, beach, the castle on its hill, the sun
+   COLOUR and TYPE: sea teal dominant, sand support, coral accent; Outfit + Inter
+   LAYOUT: hero scene, language switch, must-sees, filterable list of local shops, contact */
+:root{color-scheme:light dark;
+--bg:light-dark(#fbf7ef,#0c1d22);--ink:light-dark(#12262b,#eef4f3);--mute:light-dark(#4f6267,#a7bcbf);
+--sea:light-dark(#0e6e7e,#0f5664);--sand:light-dark(#f1e2c6,#1a3036);--card:light-dark(#ffffff,#13292f);
+--line:light-dark(#e6dcc8,#24414a);--coral:#ff5a3c}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:Outfit,system-ui,sans-serif;line-height:1.05;text-wrap:balance;margin:0}
+h1{font-size:clamp(36px,6vw,52px);color:#fff}
+h2{font-size:clamp(26px,4vw,34px);margin-bottom:6px}
+h3{font-size:19px}
+a{color:inherit}
+.band{padding:clamp(28px,4vw,64px) max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+header{background:var(--sea);color:#fff;position:relative}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:32px;align-items:center}
+.hero p{font-size:17px;max-width:34em;color:#e3f3f3;margin:14px 0 22px}
+.scene{aspect-ratio:16/11;width:100%;border-radius:22px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.25)}
+.scene svg{width:100%;height:100%;display:block}
+.lang{display:inline-flex;background:rgba(255,255,255,.14);border-radius:999px;padding:4px}
+.lang button{font:600 15px Inter,sans-serif;border:0;background:none;color:#fff;min-height:44px;padding:0 14px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed=true]{background:#fff;color:var(--sea)}
+button:focus-visible,a:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:26px;font-weight:600}
+.lead{color:var(--mute);margin:0 0 22px;max-width:60ch}
+.must{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.m{background:var(--sand);border-radius:18px;padding:20px}
+.m h3{margin-bottom:6px}.m p{margin:0;color:var(--mute)}
+.m .k{display:inline-block;font-size:13px;font-weight:600;color:var(--sea);margin-bottom:8px}
+:root[data-theme=dark] .m .k{color:#7fd3dc}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .m .k{color:#7fd3dc}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.chips button{font:600 15px Inter,sans-serif;min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.chips button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.p{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:6px}
+.p .c{font-size:13px;color:var(--mute)}
+.p p{margin:0;font-size:15px}
+.p .a{font-size:14px;color:var(--mute)}
+.p .row{margin-top:auto;padding-top:8px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.near{font-size:13px;font-weight:600;background:var(--coral);color:#fff;border-radius:999px;padding:3px 10px;white-space:nowrap}
+.map{font-weight:600;font-size:15px;text-decoration:none;color:var(--sea);min-height:44px;display:inline-flex;align-items:center}
+:root[data-theme=dark] .map{color:#7fd3dc}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .map{color:#7fd3dc}}
+footer{background:var(--sea);color:#fff}
+footer .g{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px}
+footer p{margin:8px 0;color:#e3f3f3}
+.small{font-size:13px;color:#cfe8e8}
+@media(max-width:760px){.hero,footer .g{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:no-preference){.sun{animation:rise 3s ease-out both}@keyframes rise{from{transform:translateY(40px);opacity:.4}}}
+</style>
+</head>
+<body>
+<header class="band">
+ <div class="wrap">
+  <div class="top"><span>ART Apartments · Castelldefels</span>
+   <div class="lang" role="group" aria-label="Idioma / Language">
+    <button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button><button data-l="fr" aria-pressed="false">FR</button><button data-l="ca" aria-pressed="false">CA</button>
+   </div>
+  </div>
+  <div class="hero">
+   <div>
+    <h1 data-t="h1"></h1>
+    <p data-t="intro"></p>
+   </div>
+   <div class="scene" aria-hidden="true">
+    <svg viewBox="0 0 640 440" preserveAspectRatio="xMidYMid slice">
+     <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffcf9e"/><stop offset=".6" stop-color="#ffe9cf"/></linearGradient>
+      <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2aa3b3"/><stop offset="1" stop-color="#0b5b68"/></linearGradient>
+      <linearGradient id="hill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6f9a5c"/><stop offset="1" stop-color="#3f6b3c"/></linearGradient>
+      <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6dfb2"/><stop offset="1" stop-color="#e5c088"/></linearGradient>
+     </defs>
+     <rect width="640" height="440" fill="url(#sky)"/>
+     <circle class="sun" cx="470" cy="150" r="54" fill="#ff7a52"/>
+     <path d="M0 230 C120 170 210 190 300 150 C360 125 420 170 520 190 C580 200 620 196 640 200 V290 H0Z" fill="#9cbf86" opacity=".7"/>
+     <path d="M0 250 C70 220 120 160 190 150 C250 142 290 200 360 232 L360 300 H0Z" fill="url(#hill)"/>
+     <g transform="translate(150 96)">
+      <rect x="0" y="40" width="80" height="44" fill="#d8b27a"/><rect x="0" y="40" width="80" height="6" fill="#f0d3a3"/>
+      <rect x="54" y="8" width="22" height="76" fill="#c99b62"/><rect x="54" y="8" width="4" height="76" fill="#e8c592"/>
+      <path d="M50 8 h30 v-8 h-6 v4 h-6 v-4 h-6 v4 h-6 v-4 h-6z" fill="#c99b62"/>
+      <path d="M0 40 h80 v-6 h-8 v3 h-8 v-3 h-8 v3 h-8 v-3 h-8 v3 h-8 v-3 h-8 v3 h-8 v-3 h-8 z" fill="#c99b62"/>
+      <rect x="14" y="56" width="10" height="14" rx="5" fill="#7a5a36"/><rect x="61" y="22" width="8" height="12" rx="4" fill="#7a5a36"/>
+     </g>
+     <rect y="280" width="640" height="90" fill="url(#sea)"/>
+     <g stroke="#bfe9ee" stroke-width="3" stroke-linecap="round" opacity=".7" fill="none">
+      <path d="M40 305 q14 -8 28 0 q14 8 28 0"/><path d="M260 322 q14 -8 28 0 q14 8 28 0"/><path d="M470 300 q14 -8 28 0 q14 8 28 0"/><path d="M380 345 q14 -8 28 0"/>
+     </g>
+     <path d="M0 360 C160 345 300 372 420 356 C520 344 590 352 640 348 V440 H0Z" fill="url(#sand)"/>
+     <g transform="translate(440 300)"><path d="M0 40 L28 -50 L28 40Z" fill="#fff"/><path d="M30 40 L30 -40 L58 40Z" fill="#ffd9cf"/><path d="M-14 42 h86 l-10 14 h-66z" fill="#ff5a3c"/></g>
+     <g transform="translate(110 360)"><rect x="-2" y="-62" width="4" height="70" fill="#8a6a45"/><path d="M-44 -54 Q0 -92 44 -54Z" fill="#ff5a3c"/><path d="M-44 -54 Q-22 -70 0 -54 Q22 -70 44 -54" fill="#ffb199"/></g>
+    </svg>
+   </div>
+  </div>
+ </div>
+</header>
+
+<section class="band"><div class="wrap">
+ <h2 data-t="mustT"></h2><p class="lead" data-t="mustL"></p>
+ <div class="must" id="must"></div>
+</div></section>
+
+<section class="band" style="background:var(--sand)"><div class="wrap">
+ <h2 data-t="shopT"></h2><p class="lead" data-t="shopL"></p>
+ <div class="chips" id="chips" role="group"></div>
+ <div class="list" id="list"></div>
+</div></section>
+
+<footer class="band"><div class="wrap g">
+ <div><h2 data-t="helpT"></h2><p data-t="helpL"></p>
+  <p><strong>ART Apartments</strong> · Av. de la Constitució, 164, 08860 Castelldefels</p>
+  <p>contact@artapartmentsbcn.com · +34 681 920 239 · +34 681 920 244</p></div>
+ <div><h3 data-t="moreT"></h3><p data-t="moreL"></p>
+  <p><a class="map" style="color:#fff" href="https://www.associaciocec.org/associats/">associaciocec.org</a></p>
+  <p class="small" data-t="note"></p></div>
+</div></footer>
+
+<script>
+{
+const LANGS=["es","en","fr","ca"];
+const T={
+es:{h1:"Bienvenido a Castelldefels",intro:"Playa, pueblo y montaña a pocos minutos de tu apartamento. Te dejamos una selección de lo imprescindible y de los comercios locales del centro para que disfrutes la ciudad como alguien de aquí.",
+mustT:"Lo imprescindible",mustL:"Lo que no te puedes perder durante tu estancia. «Cómo llegar» abre Google Maps con la ruta desde el apartamento.",
+shopT:"Comercio local",shopL:"Panaderías, vinos, mercado, bienestar y tiendas del centro. Los marcados «En tu avenida» están en la misma Av. de la Constitució que el edificio.",
+helpT:"¿Necesitas algo?",helpL:"No hay recepción física, pero el equipo te atiende por correo y teléfono durante tu estancia.",
+moreT:"Más comercios",moreL:"Todos estos negocios forman parte de CEC, la asociación de comercio y empresa de Castelldefels. En su web tienes el directorio completo.",
+note:"Horarios y servicios pueden cambiar: confírmalos con cada comercio antes de ir.",near:"En tu avenida",map:"Cómo llegar →",all:"Todo"},
+en:{h1:"Welcome to Castelldefels",intro:"Beach, old town and hills just minutes from your apartment. Here is our pick of the must-sees and the local shops in the centre, so you can enjoy the town like a local.",
+mustT:"Must-sees",mustL:"What you shouldn't miss during your stay. “Directions” opens Google Maps with the route from the apartment.",
+shopT:"Local shops",shopL:"Bakeries, wine, fresh produce, wellness and boutiques in the centre. Those tagged “On your avenue” are on Av. de la Constitució, the same street as the building.",
+helpT:"Need anything?",helpL:"There's no front desk, but our team is available by email and phone throughout your stay.",
+moreT:"More local shops",moreL:"All these businesses belong to CEC, the Castelldefels retail and business association. Their website has the full directory.",
+note:"Opening hours and services may change: please check with each shop before you go.",near:"On your avenue",map:"Directions →",all:"All"},
+fr:{h1:"Bienvenue à Castelldefels",intro:"Plage, vieille ville et collines à quelques minutes de votre appartement. Voici notre sélection des incontournables et des commerces locaux du centre, pour profiter de la ville comme un habitant.",
+mustT:"Les incontournables",mustL:"Ce qu'il ne faut pas manquer pendant votre séjour. « Itinéraire » ouvre Google Maps avec le trajet depuis l'appartement.",
+shopT:"Commerces locaux",shopL:"Boulangeries, vins, produits frais, bien-être et boutiques du centre. Ceux marqués « Sur votre avenue » se trouvent sur l'Av. de la Constitució, la même rue que l'immeuble.",
+helpT:"Besoin d'aide ?",helpL:"Il n'y a pas de réception sur place, mais notre équipe reste joignable par e-mail et par téléphone pendant tout votre séjour.",
+moreT:"Plus de commerces",moreL:"Tous ces commerces font partie du CEC, l'association du commerce et des entreprises de Castelldefels. Leur site propose l'annuaire complet.",
+note:"Les horaires et services peuvent changer : vérifiez auprès de chaque commerce avant de vous déplacer.",near:"Sur votre avenue",map:"Itinéraire →",all:"Tout"},
+ca:{h1:"Benvingut a Castelldefels",intro:"Platja, poble i muntanya a pocs minuts del teu apartament. Et deixem una selecció d'imprescindibles i de comerços locals del centre perquè gaudeixis de la ciutat com algú d'aquí.",
+mustT:"Imprescindibles",mustL:"El que no et pots perdre durant l'estada. «Com arribar-hi» obre Google Maps amb la ruta des de l'apartament.",
+shopT:"Comerç local",shopL:"Fleques, vins, mercat, benestar i botigues del centre. Els marcats «A la teva avinguda» són a la mateixa Av. de la Constitució que l'edifici.",
+helpT:"Necessites alguna cosa?",helpL:"No hi ha recepció física, però l'equip t'atén per correu i telèfon durant tota l'estada.",
+moreT:"Més comerços",moreL:"Tots aquests negocis formen part del CEC, l'associació de comerç i empresa de Castelldefels. Al seu web tens el directori complet.",
+note:"Els horaris i serveis poden canviar: confirma-ho amb cada comerç abans d'anar-hi.",near:"A la teva avinguda",map:"Com arribar-hi →",all:"Tot"}};
+const MUST=[
+{q:"Platja de Castelldefels",k:["Playa","Beach","Plage","Platja"],n:["La playa","The beach","La plage","La platja"],d:["Kilómetros de arena fina y paseo marítimo, ideal para caminar, ir en bici o ver el atardecer.","Miles of fine sand and a seafront promenade, perfect for walking, cycling or watching the sunset.","Des kilomètres de sable fin et une promenade en bord de mer, idéale pour marcher, faire du vélo ou admirer le coucher de soleil.","Quilòmetres de sorra fina i passeig marítim, ideal per caminar, anar en bici o veure la posta de sol."]},
+{q:"Castell de Castelldefels",k:["Historia","History","Histoire","Història"],n:["Castell de Castelldefels","Castelldefels Castle","Château de Castelldefels","Castell de Castelldefels"],d:["El castillo en lo alto del casco antiguo, con vistas sobre la ciudad y el mar.","The castle above the old town, with views over the town and the sea.","Le château qui domine la vieille ville, avec vue sur la ville et la mer.","El castell dalt del nucli antic, amb vistes sobre la ciutat i el mar."]},
+{q:"Canal Olímpic de Catalunya, Castelldefels",k:["Deporte","Sport","Sport","Esport"],n:["Canal Olímpic","Olympic Canal","Canal olympique","Canal Olímpic"],d:["El canal de los Juegos de Barcelona 92: paseos, piragüismo y actividades al aire libre.","The Barcelona '92 rowing canal: walks, canoeing and outdoor activities.","Le canal des Jeux de Barcelone 92 : balades, canoë et activités en plein air.","El canal dels Jocs de Barcelona 92: passejades, piragüisme i activitats a l'aire lliure."]},
+{q:"Parc Natural del Garraf",k:["Naturaleza","Nature","Nature","Natura"],n:["Parc del Garraf","Garraf Natural Park","Parc naturel du Garraf","Parc del Garraf"],d:["Rutas de senderismo y miradores sobre la costa, justo detrás de la ciudad.","Hiking trails and coastal viewpoints right behind the town.","Sentiers de randonnée et belvédères sur la côte, juste derrière la ville.","Rutes de senderisme i miradors sobre la costa, just darrere la ciutat."]},
+{q:"Estació de Castelldefels",k:["Excursión","Day trip","Excursion","Excursió"],n:["Barcelona y Sitges","Barcelona & Sitges","Barcelone et Sitges","Barcelona i Sitges"],d:["En tren (línea R2 Sud de Rodalies) llegas a Barcelona en dirección norte y a Sitges en dirección sur.","By train (Rodalies R2 Sud) you can reach Barcelona heading north and Sitges heading south.","En train (ligne R2 Sud de Rodalies), rejoignez Barcelone vers le nord et Sitges vers le sud.","En tren (línia R2 Sud de Rodalies) arribes a Barcelona en direcció nord i a Sitges en direcció sud."]}];
+const C={food:["Dulces y café","Bakeries & coffee","Pâtisseries et café","Dolços i cafè"],mkt:["Mercado y vinos","Fresh food & wine","Produits frais et vins","Mercat i vins"],well:["Bienestar","Wellness","Bien-être","Benestar"],shop:["Tiendas","Shopping","Boutiques","Botigues"],use:["Útil para tu estancia","Handy during your stay","Pratique pour le séjour","Útil per a l'estada"]};
+const P=[
+{c:"food",n:"Croiss Paris",a:"Carrer de l'Església, 44",d:["Panadería, heladería y pastelería, con opciones veganas.","Bakery, ice cream and pastries, with vegan options.","Boulangerie, glacier et pâtisserie, avec des options véganes.","Fleca, gelateria i pastisseria, amb opcions veganes."]},
+{c:"food",n:"Cafè de Finca, Coffee Roasters",a:"Av. de la Pineda, 35",d:["Tostadores de café de origen, del campo a la taza.","Specialty coffee roasters, from farm to cup.","Torréfacteurs de cafés d'origine, de la plantation à la tasse.","Torradors de cafè d'origen, del camp a la tassa."]},
+{c:"food",n:"Crema & Chocolate by Stata",a:"Carrer Major, 101, local 4",d:["Pastelería artesanal con creaciones únicas.","Artisan pastry shop with one-of-a-kind creations.","Pâtisserie artisanale aux créations uniques.","Pastisseria artesanal amb creacions úniques."]},
+{c:"food",n:"Caprice Bakery",a:"Carrer de Narcís Monturiol, 1",d:["Obrador propio, productos originales y de calidad.","Baked on site, original and high-quality.","Fabrication maison, produits originaux et de qualité.","Obrador propi, productes originals i de qualitat."]},
+{c:"food",n:"La Casa Blanca",d:["Pastelería artesana y familiar de producción propia.","Family-run artisan pastry shop, everything made in-house.","Pâtisserie artisanale et familiale, tout est fait maison.","Pastisseria artesana i familiar de producció pròpia."]},
+{c:"mkt",n:"Celler Vallès / Vinomada",a:"Av. de la Constitució, 204",near:1,d:["Vinos, cavas y licores, con trato familiar.","Wines, cava and spirits, with a family touch.","Vins, cavas et spiritueux, dans une ambiance familiale.","Vins, caves i licors, amb tracte familiar."]},
+{c:"mkt",n:"Rostisseria Monijos",a:"Av. de la Constitució, 207",near:1,d:["Rostisería: comida preparada para llevar al apartamento.","Rotisserie: ready-made food to take back to the apartment.","Rôtisserie : plats préparés à emporter à l'appartement.","Rostisseria: menjar preparat per endur-te a l'apartament."]},
+{c:"mkt",n:"Cal Fruitós",a:"Carrer Major, 3",d:["Fruta y verdura fresca de proximidad.","Fresh local fruit and vegetables.","Fruits et légumes frais de la région.","Fruita i verdura fresca de proximitat."]},
+{c:"mkt",n:"Superverd",a:"Av. de Manuel Girona, 18",d:["Producto fresco de proximidad y gran variedad de encurtidos.","Fresh local produce and a wide range of pickles.","Produits frais locaux et grand choix de conserves au vinaigre.","Producte fresc de proximitat i gran varietat d'encurtits."]},
+{c:"mkt",n:"Carnisseria Soler",a:"Carrer de Juan de la Cierva, 11",d:["Carnicería tradicional desde 1965, ideal para una barbacoa.","Traditional butcher since 1965 — great for a barbecue.","Boucherie traditionnelle depuis 1965, idéale pour un barbecue.","Carnisseria tradicional des de 1965, ideal per a una barbacoa."]},
+{c:"well",n:"Lacuna Wellness Spa",d:["Spa junto al mar: circuitos de agua y rituales mediterráneos.","Seaside spa: water circuits and Mediterranean rituals.","Spa en bord de mer : parcours aquatiques et rituels méditerranéens.","Spa vora el mar: circuits d'aigües i rituals mediterranis."]},
+{c:"well",n:"Yoga One Castelldefels",a:"Av. de la Constitució, 190",near:1,d:["Clases de yoga a pocos pasos del edificio.","Yoga classes a short walk from the building.","Cours de yoga à quelques pas de l'immeuble.","Classes de ioga a poques passes de l'edifici."]},
+{c:"well",n:"Cal Massatge",a:"Av. de la Constitució, 28",d:["Masajes y terapias para desconectar.","Massages and therapies to unwind.","Massages et soins pour décompresser.","Massatges i teràpies per desconnectar."]},
+{c:"well",n:"Salt Room Castelldefels",a:"Carrer del General Palafox, 5",d:["Sala de sal para relajarse y respirar mejor.","Salt room to relax and breathe easier.","Salle de sel pour se détendre et mieux respirer.","Sala de sal per relaxar-se i respirar millor."]},
+{c:"well",n:"Beauty Salon 300th Avenue",a:"Avinguda 300, 20",d:["Salón de belleza.","Beauty salon.","Salon de beauté.","Saló de bellesa."]},
+{c:"shop",n:"Arroba.Alba by Clara Alba",a:"Carrer del Doctor Fleming, 44",d:["Moda con piezas exclusivas y estilo propio.","Fashion with exclusive pieces and a style of its own.","Mode aux pièces exclusives et au style affirmé.","Moda amb peces exclusives i estil propi."]},
+{c:"shop",n:"Belice César Diego",a:"Carrer de Pompeu Fabra, 11",d:["Bolsos y mochilas de piel hechos a mano aquí.","Handmade leather bags and backpacks, made locally.","Sacs et sacs à dos en cuir faits main sur place.","Bosses i motxilles de pell fetes a mà aquí."]},
+{c:"shop",n:"Star Books",a:"Carrer de Pompeu Fabra, 10",d:["Librería para encontrar tu próxima lectura de playa.","Bookshop to find your next beach read.","Librairie pour trouver votre prochaine lecture de plage.","Llibreria per trobar la teva propera lectura de platja."]},
+{c:"shop",n:"Strass Joiers",a:"Carrer de l'Església, 3",d:["Joyería: un recuerdo especial de tu viaje.","Jewellery: a special souvenir of your trip.","Bijouterie : un souvenir spécial de votre voyage.","Joieria: un record especial del teu viatge."]},
+{c:"shop",n:"Lindsey",a:"Carrer del Doctor Ferran, 15",d:["Zapatos de mujer elegantes y exclusivos.","Elegant, exclusive women's shoes.","Chaussures pour femme élégantes et exclusives.","Sabates de dona elegants i exclusives."]},
+{c:"shop",n:"Coyote",a:"Carrer d'Arcadi Balaguer, 9",d:["Moda multimarca.","Multi-brand fashion.","Mode multimarque.","Moda multimarca."]},
+{c:"use",n:"Farmàcia Dra. Sancho",a:"Av. de la Constitució, 206",near:1,d:["Farmacia con atención cercana, en tu misma avenida.","Friendly pharmacy on your own avenue.","Pharmacie accueillante, sur votre avenue.","Farmàcia amb atenció propera, a la teva mateixa avinguda."]},
+{c:"use",n:"Lavandería Tintorería (C/ Major)",a:"Carrer Major, 90",d:["Lavandería y tintorería.","Laundry and dry cleaning.","Laverie et pressing.","Bugaderia i tintoreria."]},
+{c:"use",n:"Rent a Car",a:"Carrer de Saragossa, 1",d:["Alquiler de coches para escapadas.","Car hire for day trips.","Location de voitures pour vos excursions.","Lloguer de cotxes per a escapades."]},
+{c:"use",n:"La Teva Fruita",d:["Frutería con servicio a domicilio.","Greengrocer with home delivery.","Primeur avec livraison à domicile.","Fruiteria amb servei a domicili."]}];
+const esc=s=>String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+let F="all";
+const nav=(navigator.language||"es").slice(0,2).toLowerCase();
+let L=LANGS.includes(nav)?nav:"en";
+try{const s=localStorage.getItem("cdf-lang");if(LANGS.includes(s))L=s}catch(e){}
+const i=()=>LANGS.indexOf(L);
+const ORIGIN="Avinguda de la Constitució 164, 08860 Castelldefels";
+const dirUrl=(dest,walk)=>"https://www.google.com/maps/dir/?api=1&origin="+encodeURIComponent(ORIGIN)+"&destination="+encodeURIComponent(dest)+(walk?"&travelmode=walking":"");
+const mapUrl=p=>dirUrl(p.n+", "+(p.a?p.a+", ":"")+"08860 Castelldefels",true);
+function render(){
+ document.documentElement.lang=L;
+ document.querySelectorAll("[data-t]").forEach(e=>e.textContent=T[L][e.dataset.t]);
+ document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===L));
+ document.getElementById("must").innerHTML=MUST.map(m=>`<div class="m"><span class="k">${esc(m.k[i()])}</span><h3>${esc(m.n[i()])}</h3><p>${esc(m.d[i()])}</p><a class="map" href="${esc(dirUrl(m.q,false))}" target="_blank" rel="noopener">${esc(T[L].map)}</a></div>`).join("");
+ const keys=["all",...Object.keys(C)];
+ document.getElementById("chips").innerHTML=keys.map(k=>`<button data-f="${k}" aria-pressed="${F===k}">${esc(k==="all"?T[L].all:C[k][i()])}</button>`).join("");
+ const items=P.filter(p=>F==="all"||p.c===F).sort((a,b)=>(b.near||0)-(a.near||0));
+ document.getElementById("list").innerHTML=items.map(p=>`<article class="p"><span class="c">${esc(C[p.c][i()])}</span><h3>${esc(p.n)}</h3><p>${esc(p.d[i()])}</p>${p.a?`<span class="a">${esc(p.a)}</span>`:""}<div class="row"><a class="map" href="${esc(mapUrl(p))}" target="_blank" rel="noopener">${esc(T[L].map)}</a>${p.near?`<span class="near">${esc(T[L].near)}</span>`:""}</div></article>`).join("");
+}
+document.querySelector(".lang").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;L=b.dataset.l;try{localStorage.setItem("cdf-lang",L)}catch(err){}render()});
+document.getElementById("chips").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;F=b.dataset.f;render()});
+render();
+}
+</script>
+</body>
+</html>
