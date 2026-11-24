@@ -10,170 +10,89 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-/* VOICE: a calm, upscale host's welcome note
-   IDEA: the ART Apartments brand card — thin geometric type, the open gold frame from the logo
-   PICTURE: real photos of the building (rooftop pool, lobby, apartments) and the castle
-   COLOUR and TYPE: ART gold #b08e68, navy #1e2838, ivory; Barlow light + medium like the logo
-   LAYOUT: photo hero with logo, the building, must-sees, local shops, contact */
+/* VOICE: a concierge in your pocket — quick, calm, upscale
+   IDEA: a hotel guest app: home screen of big tiles, each opens one answer
+   PICTURE: the rooftop pool in a slim welcome card; tiles with thin gold line icons like the logo frame
+   COLOUR and TYPE: ART gold #b08e68, navy #1e2838, ivory; Barlow light + medium
+   LAYOUT: app bar, welcome card, tiles grid, "closest to you" list; views replace home with a back button */
 :root{color-scheme:light dark;
 --gold:#b08e68;--gold-ink:light-dark(#8a6a45,#d6b48d);--navy:#1e2838;
---bg:light-dark(#faf8f5,#121925);--ink:light-dark(#1e2838,#f1ece5);--mute:light-dark(#525a66,#b3b9c2);
---soft:light-dark(#f2ece3,#1a2332);--card:light-dark(#ffffff,#1c2636);--line:light-dark(#e6ddd0,#2b3646)}
+--bg:light-dark(#f6f3ee,#111824);--ink:light-dark(#1e2838,#f1ece5);--mute:light-dark(#525a66,#b3b9c2);
+--card:light-dark(#ffffff,#1b2535);--line:light-dark(#e6ddd0,#2b3646);--soft:light-dark(#efe8dd,#182131)}
 :root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 Barlow,system-ui,sans-serif;overflow-x:clip}
-h1,h2,h3{line-height:1.08;text-wrap:balance;margin:0;font-weight:400}
-h1{font-size:clamp(38px,6.4vw,64px);font-weight:300;color:#fff}
-h2{font-size:clamp(28px,4vw,40px);font-weight:300;margin-bottom:8px}
-h3{font-size:20px;font-weight:500}
-a{color:inherit}
-img{display:block;max-width:100%}
-.band{padding:clamp(36px,5vw,72px) max(5vw,16px)}
-.wrap{max-width:1240px;margin:0 auto}
-.lead{color:var(--mute);margin:0 0 26px;max-width:62ch}
-/* hero */
-header{position:relative;min-height:min(88vh,760px);display:flex;flex-direction:column;color:#fff;background:var(--navy);overflow:hidden}
-header>img.bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-header::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(30,40,56,.92) 0%,rgba(30,40,56,.6) 45%,rgba(30,40,56,.1) 100%),linear-gradient(0deg,rgba(30,40,56,.7),transparent 40%)}
-header>*{position:relative;z-index:1}
-header>img.bgimg{position:absolute;z-index:0}
-header::after{z-index:0}
-.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:24px max(5vw,16px)}
-.logo{width:clamp(130px,16vw,180px);height:auto}
-.hero{margin-top:auto;padding:0 max(5vw,16px) clamp(40px,7vw,90px);max-width:1240px;width:100%;margin-inline:auto}
-.hero .frame{border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);padding:0 0 22px 24px;max-width:640px}
-.hero p{font-size:18px;color:#e9e4dc;margin:16px 0 0;max-width:34em}
-.lang{display:inline-flex;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:3px}
-.lang button{font:500 15px Barlow,sans-serif;border:0;background:none;color:#fff;min-height:44px;min-width:44px;padding:0 12px;border-radius:999px;cursor:pointer}
-.lang button[aria-pressed=true]{background:var(--gold);color:#fff}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 Barlow,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{margin:0;line-height:1.1;text-wrap:balance;font-weight:500}
+a{color:inherit}img{display:block;max-width:100%}
+.bar{position:sticky;top:0;z-index:5;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px max(4vw,14px)}
+.bar .logo{height:40px;width:auto}
+.lang{display:inline-flex;background:rgba(255,255,255,.1);border-radius:999px;padding:3px}
+.lang button{font:500 14px Barlow,sans-serif;border:0;background:none;color:#fff;min-height:40px;min-width:40px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--gold)}
 button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-/* building */
-.bld{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.6fr);gap:clamp(24px,4vw,56px);align-items:start}
-.addr{display:inline-block;margin-top:6px;font-weight:500;color:var(--gold-ink)}
-.gal{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.gal figure{margin:0;position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/3;background:var(--soft)}
-.gal figure:first-child{grid-column:1/-1;aspect-ratio:16/8}
-.gal img{width:100%;height:100%;object-fit:cover}
-.gal figcaption{position:absolute;left:10px;bottom:10px;background:rgba(30,40,56,.82);color:#fff;font-size:14px;font-weight:500;padding:4px 10px;border-radius:999px}
-/* must-sees */
-.mustg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr);gap:16px}
-.feat{position:relative;border-radius:18px;overflow:hidden;min-height:420px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:24px}
-.feat img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.feat::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(30,40,56,.9),rgba(30,40,56,0) 60%)}
-.feat>*:not(img){position:relative;z-index:1}
-.feat p{margin:6px 0 0;color:#ece6dd}
-.feat .map{color:#fff}
-.must{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.m{background:var(--soft);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:6px}
-.m p{margin:0;color:var(--mute)}
-.k{font-size:14px;font-weight:500;color:var(--gold-ink)}
-.feat .k{color:#e8cba7}
-/* shops */
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
-.chips button{font:500 15px Barlow,sans-serif;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
-.chips button[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
-.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
-.p{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:6px}
-.p .c{font-size:14px;color:var(--gold-ink);font-weight:500}
-.p p{margin:0;font-size:16px}
-.p .a{font-size:15px;color:var(--mute)}
-.row{margin-top:auto;padding-top:8px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
-.near{font-size:13px;font-weight:600;background:var(--gold);color:#fff;border-radius:999px;padding:3px 10px;white-space:nowrap}
-.map{font-weight:600;font-size:16px;text-decoration:none;color:var(--gold-ink);min-height:44px;display:inline-flex;align-items:center}
-/* transport & parking */
-.tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
-.hl{background:var(--navy);color:#fff;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:8px;grid-column:1/-1}
-.hl .big{font-size:clamp(34px,5vw,48px);font-weight:300;line-height:1}
-.hl p{margin:0;color:#dfe3ea}.hl .map{color:#e8cba7}
-.tc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:8px}
-.tc p{margin:0;color:var(--mute)}
-.lines{display:grid;gap:8px;margin:4px 0 0;padding:0;list-style:none}
-.lines li{display:flex;gap:10px;align-items:baseline}
-.ln{flex:none;font-weight:600;font-size:14px;background:var(--gold);color:#fff;border-radius:6px;padding:2px 8px;min-width:44px;text-align:center}
-.tip{font-size:15px;color:var(--mute);margin-top:14px}
-.zones{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:28px}
-.z{border-radius:16px;padding:18px;background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
-.z p{margin:0;font-size:16px;color:var(--mute)}
-.sw{height:10px;border-radius:5px}
-.zb .sw{background:#1f5fbf}.zv .sw{background:#2e9b4f}.zw .sw{background:#fff;border:1.5px dashed #8a8f98}.zy .sw{background:#f2c200}
-/* footer */
-footer{background:var(--navy);color:#fff}
-footer .g{display:grid;grid-template-columns:auto minmax(0,1.2fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
-footer p{margin:8px 0;color:#dfe3ea}
-footer .logo{width:150px}
-footer a.map{color:#e8cba7}
-.small{font-size:14px;color:#b9c0cb}
-@media(max-width:860px){.bld,.mustg,footer .g{grid-template-columns:minmax(0,1fr)}.feat{min-height:360px}}
-@media(max-width:560px){.must{grid-template-columns:minmax(0,1fr)}.gal{grid-template-columns:minmax(0,1fr)}.gal figure:first-child{aspect-ratio:4/3}header{min-height:640px}}
-@media (prefers-reduced-motion:no-preference){header>img.bgimg{animation:zoom 14s ease-out both}@keyframes zoom{from{transform:scale(1.08)}}}
+main{max-width:860px;margin:0 auto;padding:16px max(4vw,14px) 40px}
+/* welcome */
+.hello{position:relative;border-radius:20px;overflow:hidden;color:#fff;min-height:150px;display:flex;flex-direction:column;justify-content:flex-end;padding:18px 20px;background:var(--navy)}
+.hello img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hello::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(30,40,56,.88),rgba(30,40,56,.15))}
+.hello>*:not(img){position:relative;z-index:1}
+.hello h1{font-size:clamp(26px,5vw,34px);font-weight:300}
+.hello p{margin:4px 0 0;color:#e7e1d8;font-size:16px}
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:16px 0 24px}
+.tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:16px;min-height:104px;padding:12px 6px;font-weight:500;font-size:15px;line-height:1.15}
+.tile svg{width:32px;height:32px;stroke:var(--gold);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.tile:active{transform:scale(.97)}
+@media(min-width:640px){.tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.sec{font-size:22px;font-weight:500;margin:4px 0 12px}
+/* rows */
+.rows{display:grid;gap:10px}
+.r{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:center}
+.r h3{font-size:18px}
+.r .meta{font-size:15px;color:var(--mute)}
+.r p{margin:2px 0 0;font-size:15.5px;color:var(--mute);grid-column:1/-1}
+.r .acts{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.go{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:42px;padding:0 14px;border-radius:999px;background:var(--navy);color:#fff;text-decoration:none;font-weight:500;font-size:15px}
+.go.alt{background:transparent;color:var(--gold-ink);border:1px solid var(--line)}
+:root[data-theme=dark] .go{background:var(--gold)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .go:not(.alt){background:var(--gold)}}
+.mins{font-weight:600;color:var(--gold-ink);font-size:15px;white-space:nowrap;text-align:right}
+.tag{display:inline-block;font-size:12.5px;font-weight:600;background:var(--gold);color:#fff;border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:2px}
+/* view */
+.vhead{display:flex;align-items:center;gap:10px;margin:2px 0 14px}
+.back{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px 0 10px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none;font-weight:500}
+.vhead h2{font-size:clamp(24px,5vw,30px);font-weight:400}
+.lead{color:var(--mute);margin:0 0 14px}
+.big{background:var(--navy);color:#fff;border-radius:18px;padding:18px 20px;margin-bottom:12px;display:grid;gap:6px}
+.big .n{font-size:clamp(28px,6vw,38px);font-weight:300;line-height:1.05}
+.big p{margin:0;color:#dfe3ea}
+.big .go{background:var(--gold);justify-self:start}
+.lines{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:8px;grid-column:1/-1}
+.lines li{display:flex;gap:10px;align-items:baseline;font-size:16px}
+.ln{flex:none;font-weight:600;font-size:13.5px;background:var(--gold);color:#fff;border-radius:6px;padding:2px 8px;min-width:44px;text-align:center}
+.zone{display:grid;grid-template-columns:10px minmax(0,1fr);gap:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.zone .sw{border-radius:5px}.zone p{margin:2px 0 0;color:var(--mute);font-size:15.5px}
+.zb{background:#1f5fbf}.zv{background:#2e9b4f}.zw{background:#fff;border:1.5px dashed #8a8f98}.zy{background:#f2c200}
+.tip{font-size:14.5px;color:var(--mute);margin:14px 2px 0}
+.photo{border-radius:16px;overflow:hidden;aspect-ratio:16/9;background:var(--soft)}
+.photo img{width:100%;height:100%;object-fit:cover}
+.gal{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px}
+.gal .photo{aspect-ratio:4/3}
+.contact{background:var(--navy);color:#fff;border-radius:18px;padding:18px 20px;margin-top:24px;display:grid;gap:4px}
+.contact p{margin:0;color:#dfe3ea;font-size:16px}
+.contact .go{background:var(--gold);justify-self:start;margin-top:8px}
+.note{font-size:13.5px;color:var(--mute);margin-top:18px;text-align:center}
+@media (prefers-reduced-motion:no-preference){#view{animation:in .25s ease-out}@keyframes in{from{opacity:0;transform:translateY(8px)}}}
 </style>
 </head>
 <body>
-<header>
- <img class="bgimg" src="img/piscina.jpg" alt="">
- <div class="top">
-  <img class="logo" src="img/logo-white.png" alt="ART Apartments">
-  <div class="lang" role="group" aria-label="Idioma / Language">
-   <button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button><button data-l="fr" aria-pressed="false">FR</button><button data-l="ca" aria-pressed="false">CA</button>
-  </div>
+<header class="bar">
+ <a href="#" aria-label="Inicio"><img class="logo" src="img/logo-white.png" alt="ART Apartments"></a>
+ <div class="lang" role="group" aria-label="Idioma / Language">
+  <button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button><button data-l="fr" aria-pressed="false">FR</button><button data-l="ca" aria-pressed="false">CA</button>
  </div>
- <div class="hero"><div class="frame">
-  <h1 data-t="h1"></h1>
-  <p data-t="intro"></p>
- </div></div>
 </header>
-
-<section class="band"><div class="wrap bld">
- <div>
-  <h2 data-t="bldT"></h2>
-  <p class="lead" data-t="bldL" style="margin-bottom:8px"></p>
-  <span class="addr">Av. de la Constitució, 164 · Castelldefels</span>
- </div>
- <div class="gal">
-  <figure><img src="img/piscina2.jpg" alt="" loading="lazy"><figcaption data-t="capPool"></figcaption></figure>
-  <figure><img src="img/lobby.jpg" alt="" loading="lazy"><figcaption data-t="capLobby"></figcaption></figure>
-  <figure><img src="img/salon.jpg" alt="" loading="lazy"><figcaption data-t="capApt"></figcaption></figure>
- </div>
-</div></section>
-
-<section class="band" style="background:var(--soft)"><div class="wrap">
- <h2 data-t="trT"></h2><p class="lead" data-t="trL"></p>
- <div class="tr" id="tr"></div>
- <p class="tip" data-t="trTip"></p>
-</div></section>
-
-<section class="band"><div class="wrap">
- <h2 data-t="pkT"></h2><p class="lead" data-t="pkL"></p>
- <div class="zones" id="zones"></div>
- <h3 data-t="freeT" style="margin-bottom:12px"></h3>
- <div class="list" id="free"></div>
- <p class="tip" data-t="pkTip"></p>
-</div></section>
-
-<section class="band" style="background:var(--soft)"><div class="wrap">
- <h2 data-t="mustT"></h2><p class="lead" data-t="mustL"></p>
- <div class="mustg">
-  <div class="feat" id="feat"><img src="img/castillo.jpg" alt="" loading="lazy"></div>
-  <div class="must" id="must"></div>
- </div>
-</div></section>
-
-<section class="band"><div class="wrap">
- <h2 data-t="shopT"></h2><p class="lead" data-t="shopL"></p>
- <div class="chips" id="chips" role="group"></div>
- <div class="list" id="list"></div>
-</div></section>
-
-<footer class="band"><div class="wrap g">
- <img class="logo" src="img/logo-white.png" alt="ART Apartments">
- <div><h2 data-t="helpT"></h2><p data-t="helpL"></p>
-  <p>Av. de la Constitució, 164, 08860 Castelldefels</p>
-  <p>contact@artapartmentsbcn.com<br>+34 681 920 239 · +34 681 920 244</p></div>
- <div><h3 data-t="moreT"></h3><p data-t="moreL"></p>
-  <p><a class="map" href="https://www.associaciocec.org/associats/">associaciocec.org →</a></p>
-  <p class="small" data-t="note"></p></div>
-</div></footer>
-
+<main><div id="view"></div></main>
 <script>
 {
 const LANGS=["es","en","fr","ca"];
@@ -251,8 +170,27 @@ const FREE=[
 {n:["Aparcamiento gratuito detrás de la estación","Free car park behind the station","Parking gratuit derrière la gare","Aparcament gratuït darrere l'estació"],ll:"41.2807427,1.9827005",t:7},
 {n:["Aparcamiento público junto a la estación","Public car park by the station","Parking public près de la gare","Aparcament públic al costat de l'estació"],ll:"41.2818255,1.9842472",t:9},
 {n:["Aparcamiento gratuito del Canal Olímpic","Olympic Canal free car park","Parking gratuit du Canal olympique","Aparcament gratuït del Canal Olímpic"],ll:"41.2791572,1.9898105",t:14}];
+const X={
+es:{hello:"Bienvenido a Castelldefels",sub:"Tu guía rápida desde ART Apartments",nearT:"Lo más cerca",back:"Volver",tTr:"Tren y bus",tPk:"Aparcar",tSee:"Qué ver",tBld:"Tu edificio",tCt:"Contacto",call:"Llamar",mail:"Escribir",minS:"min",seeAll:"Ver todo"},
+en:{hello:"Welcome to Castelldefels",sub:"Your quick guide from ART Apartments",nearT:"Closest to you",back:"Back",tTr:"Train & bus",tPk:"Parking",tSee:"Sightseeing",tBld:"Your building",tCt:"Contact",call:"Call",mail:"Email",minS:"min",seeAll:"See all"},
+fr:{hello:"Bienvenue à Castelldefels",sub:"Votre guide pratique d'ART Apartments",nearT:"Tout près",back:"Retour",tTr:"Train et bus",tPk:"Stationnement",tSee:"À voir",tBld:"Votre immeuble",tCt:"Contact",call:"Appeler",mail:"Écrire",minS:"min",seeAll:"Tout voir"},
+ca:{hello:"Benvingut a Castelldefels",sub:"La teva guia ràpida d'ART Apartments",nearT:"El més a prop",back:"Tornar",tTr:"Tren i bus",tPk:"Aparcar",tSee:"Què veure",tBld:"El teu edifici",tCt:"Contacte",call:"Trucar",mail:"Escriure",minS:"min",seeAll:"Veure-ho tot"}};
+const ICON={
+super:'<path d="M3 4h2l2.4 10.2a1.5 1.5 0 0 0 1.5 1.1h8.6a1.5 1.5 0 0 0 1.5-1.1L21 8H6.2"/><circle cx="9.5" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/>',
+tr:'<rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M9 21l1.5-4M15 21l-1.5-4"/><circle cx="8.5" cy="14" r=".8"/><circle cx="15.5" cy="14" r=".8"/>',
+pk:'<rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M9.5 17V7h3.5a3 3 0 0 1 0 6H9.5"/>',
+use:'<rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M12 7.5v9M7.5 12h9"/>',
+food:'<path d="M5 9h11v4a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5z"/><path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H15M8 3.5c0 1.5 1 1.5 1 3M11.5 3.5c0 1.5 1 1.5 1 3"/>',
+mkt:'<path d="M8 3h8l-1 4H9z"/><path d="M9 7c-2 2-3 4-3 7a6 6 0 0 0 12 0c0-3-1-5-3-7"/>',
+flor:'<circle cx="12" cy="8" r="2.2"/><path d="M12 5.8c0-2.5 3-2.5 3 0M14.2 8c2.5 0 2.5 3 0 3M9.8 8c-2.5 0-2.5 3 0 3M12 10.2V21M12 16c-2-2-4.5-2-5.5-1M12 18c2-2 4.5-2 5.5-1"/>',
+see:'<path d="M4 21V9l3-2 3 2v12M14 21V6l3-3 3 3v15M2 21h20M7 13v2M17 10v2"/>',
+shop:'<path d="M5.5 8h13l-1 12.5h-11z"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/>',
+well:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
+bld:'<path d="M4 21h16M6 21V5.5L13 3v18M13 8l5 1.5V21M9 8h1M9 11.5h1M9 15h1M15.5 12h.5M15.5 15.5h.5"/>',
+ct:'<path d="M5 4h4l1.5 4.5-2.5 1.5a11 11 0 0 0 6 6l1.5-2.5L20 15v4a1.5 1.5 0 0 1-1.6 1.5A16.5 16.5 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/>'};
+const TILES=[["super","super"],["transport","tr"],["parking","pk"],["use","use"],["food","food"],["mkt","mkt"],["flor","flor"],["sights","see"],["shop","shop"],["well","well"],["building","bld"],["contact","ct"]];
+const VIEWS=new Set(TILES.map(t=>t[0]));
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
-let F="all";
 const nav=(navigator.language||"es").slice(0,2).toLowerCase();
 let L=LANGS.includes(nav)?nav:"en";
 try{const s=localStorage.getItem("cdf-lang");if(LANGS.includes(s))L=s}catch(e){}
@@ -260,26 +198,43 @@ const i=()=>LANGS.indexOf(L);
 const ORIGIN="Avinguda de la Constitució 164, 08860 Castelldefels";
 const dirUrl=(dest,walk)=>"https://www.google.com/maps/dir/?api=1&origin="+encodeURIComponent(ORIGIN)+"&destination="+encodeURIComponent(dest)+(walk?"&travelmode=walking":"");
 const mapUrl=p=>dirUrl(p.n+", "+(p.a?p.a+(p.drive?"":", 08860 Castelldefels"):"08860 Castelldefels"),!p.drive);
+const tl=k=>{const t=T[L],x=X[L];return {super:C.super[i()],transport:x.tTr,parking:x.tPk,use:C.use[i()],food:C.food[i()],mkt:C.mkt[i()],flor:C.flor[i()],sights:x.tSee,shop:C.shop[i()],well:C.well[i()],building:x.tBld,contact:x.tCt}[k]};
+const go=(href,label,alt)=>`<a class="go${alt?" alt":""}" href="${esc(href)}" target="_blank" rel="noopener">${esc(label)}</a>`;
+const mins=t=>t?`<span class="mins">≈ ${t} ${esc(X[L].minS)}</span>`:"";
+function row(p){const t=T[L];
+ return `<article class="r"><h3>${esc(p.n)}${p.near?`<span class="tag">${esc(t.near)}</span>`:""}</h3>${mins(p.t)}${p.a?`<span class="meta" style="grid-column:1/-1">${esc(p.a)}</span>`:""}<p>${esc(p.d[i()])}</p><div class="acts">${p.noMap?"":go(mapUrl(p),t.map.replace(" →",""))}${p.w?go(p.w,t.web.replace(" →",""),1):""}</div></article>`}
+const head=k=>`<div class="vhead"><a class="back" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>${esc(X[L].back)}</a><h2>${esc(tl(k))}</h2></div>`;
+function home(){const t=T[L],x=X[L];
+ const near=P.filter(p=>p.t&&p.t<=8||p.near).sort((a,b)=>(a.t||5)-(b.t||5)).slice(0,7);
+ const st={n:t.stT,t:3,d:[t.stP,t.stP,t.stP,t.stP],q:"Estació de Castelldefels"};
+ return `<section class="hello"><img src="img/piscina.jpg" alt=""><h1>${esc(x.hello)}</h1><p>${esc(x.sub)}</p></section>
+ <nav class="tiles">${TILES.map(([k,ic])=>`<a class="tile" href="#${k}"><svg viewBox="0 0 24 24" aria-hidden="true">${ICON[ic]}</svg>${esc(tl(k))}</a>`).join("")}</nav>
+ <h2 class="sec">${esc(x.nearT)}</h2>
+ <div class="rows"><article class="r"><h3>${esc(t.stT)}</h3>${mins(3)}<p>${esc(t.stP)}</p><div class="acts">${go(dirUrl(st.q,true),t.map.replace(" →",""))}<a class="go alt" href="#transport">${esc(x.tTr)}</a></div></article>${near.map(row).join("")}</div>
+ ${contact()}`}
+function contact(){const t=T[L],x=X[L];
+ return `<section class="contact"><h3>${esc(t.helpT)}</h3><p>${esc(t.helpL)}</p><p>contact@artapartmentsbcn.com · +34 681 920 239</p><div class="acts" style="display:flex;gap:8px;flex-wrap:wrap"><a class="go" href="tel:+34681920239">${esc(x.call)}</a><a class="go" style="background:transparent;border:1px solid rgba(255,255,255,.35)" href="mailto:contact@artapartmentsbcn.com">${esc(x.mail)}</a></div></section>`}
+function view(k){const t=T[L],x=X[L];
+ if(C[k]){const items=P.filter(p=>p.c===k).sort((a,b)=>(a.t||(a.near?5:99))-(b.t||(b.near?5:99)));return head(k)+`<div class="rows">${items.map(row).join("")}</div><p class="note">${esc(t.note)}</p>`}
+ if(k==="transport")return head(k)+`<div class="big"><span>${esc(t.stT)}</span><span class="n">${esc(t.stD)}</span><p>${esc(t.stP)}</p>${go(dirUrl("Estació de Castelldefels",true),t.map.replace(" →",""))}</div>
+  <div class="rows"><article class="r"><h3>${esc(t.trainT)}</h3><p>${esc(t.trainD)}</p><ul class="lines"><li><span class="ln">R2S</span><span>Castelldefels → Barcelona Sants · Passeig de Gràcia</span></li></ul></article>
+  <article class="r"><h3>${esc(t.busT)}</h3><p>${esc(t.busD)}</p><ul class="lines">${[["L94",t.l94],["L95",t.l95],["E95",t.e95],["L97",t.l97],["N16",t.n16]].map(z=>`<li><span class="ln">${z[0]}</span><span>${esc(z[1])}</span></li>`).join("")}</ul></article></div><p class="tip">${esc(t.trTip)}</p>`;
+ if(k==="parking")return head(k)+`<p class="lead">${esc(t.pkL)}</p><div class="rows">${[["zb",t.zb,t.zbD],["zv",t.zv,t.zvD],["zw",t.zw,t.zwD],["zy",t.zy,t.zyD]].map(z=>`<div class="zone"><div class="sw ${z[0]}"></div><div><h3>${esc(z[1])}</h3><p>${esc(z[2])}</p></div></div>`).join("")}</div>
+  <h2 class="sec" style="margin-top:22px">${esc(t.freeT)}</h2><div class="rows">${FREE.map(f=>`<article class="r"><h3>${esc(f.n[i()])}</h3>${mins(f.t)}<div class="acts">${go(dirUrl(f.ll,false),t.map.replace(" →",""))}</div></article>`).join("")}</div><p class="tip">${esc(t.pkTip)}</p>`;
+ if(k==="sights")return head(k)+`<div class="photo" style="margin-bottom:10px"><img src="img/castillo.jpg" alt=""></div><div class="rows">${[MUST[1],...MUST.filter((m,j)=>j!==1)].map(m=>`<article class="r"><h3>${esc(m.n[i()])}</h3><p>${esc(m.d[i()])}</p><div class="acts">${go(dirUrl(m.q,false),t.map.replace(" →",""))}</div></article>`).join("")}</div>`;
+ if(k==="building")return head(k)+`<p class="lead">${esc(t.bldL)}</p><div class="photo"><img src="img/piscina2.jpg" alt=""></div><div class="gal"><div class="photo"><img src="img/lobby.jpg" alt=""></div><div class="photo"><img src="img/salon.jpg" alt=""></div></div><p class="tip">Av. de la Constitució, 164 · 08860 Castelldefels</p>`;
+ if(k==="contact")return head(k)+contact().replace('class="contact"','class="contact" style="margin-top:0"')+`<div class="rows" style="margin-top:14px"><article class="r"><h3>${esc(t.moreT)}</h3><p>${esc(t.moreL)}</p><div class="acts">${go("https://www.associaciocec.org/associats/","associaciocec.org",1)}</div></article></div>`;
+ return home()}
 function render(){
  document.documentElement.lang=L;
- document.querySelectorAll("[data-t]").forEach(e=>e.textContent=T[L][e.dataset.t]);
  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===L));
- const t=T[L];
- document.getElementById("tr").innerHTML=`<div class="hl"><span class="k" style="color:#e8cba7">${esc(t.stT)}</span><span class="big">${esc(t.stD)}</span><p>${esc(t.stP)}</p><a class="map" href="${esc(dirUrl("Estació de Castelldefels",true))}" target="_blank" rel="noopener">${esc(t.map)}</a></div>
- <div class="tc"><h3>${esc(t.trainT)}</h3><p>${esc(t.trainD)}</p><ul class="lines"><li><span class="ln">R2S</span><span>Castelldefels → Barcelona Sants · Passeig de Gràcia</span></li></ul></div>
- <div class="tc"><h3>${esc(t.busT)}</h3><p>${esc(t.busD)}</p><ul class="lines">${[["L94",t.l94],["L95",t.l95],["E95",t.e95],["L97",t.l97],["N16",t.n16]].map(x=>`<li><span class="ln">${x[0]}</span><span>${esc(x[1])}</span></li>`).join("")}</ul></div>`;
- document.getElementById("zones").innerHTML=[["zb",t.zb,t.zbD],["zv",t.zv,t.zvD],["zw",t.zw,t.zwD],["zy",t.zy,t.zyD]].map(z=>`<div class="z ${z[0]}"><div class="sw"></div><h3>${esc(z[1])}</h3><p>${esc(z[2])}</p></div>`).join("");
- document.getElementById("free").innerHTML=FREE.map(f=>`<article class="p"><h3>${esc(f.n[i()])}</h3><span class="a">≈ ${f.t} ${esc(t.walk)}</span><div class="row"><a class="map" href="${esc(dirUrl(f.ll,false))}" target="_blank" rel="noopener">${esc(t.map)}</a></div></article>`).join("");
- const mi=m=>`<span class="k">${esc(m.k[i()])}</span><h3>${esc(m.n[i()])}</h3><p>${esc(m.d[i()])}</p><a class="map" href="${esc(dirUrl(m.q,false))}" target="_blank" rel="noopener">${esc(T[L].map)}</a>`;
- const feat=document.getElementById("feat");feat.querySelectorAll(":scope>:not(img)").forEach(e=>e.remove());feat.insertAdjacentHTML("beforeend",mi(MUST[1]));
- document.getElementById("must").innerHTML=MUST.filter((m,j)=>j!==1).map(m=>`<div class="m"><span class="k">${esc(m.k[i()])}</span><h3>${esc(m.n[i()])}</h3><p>${esc(m.d[i()])}</p><a class="map" href="${esc(dirUrl(m.q,false))}" target="_blank" rel="noopener">${esc(T[L].map)}</a></div>`).join("");
- const keys=["all",...Object.keys(C)];
- document.getElementById("chips").innerHTML=keys.map(k=>`<button data-f="${k}" aria-pressed="${F===k}">${esc(k==="all"?T[L].all:C[k][i()])}</button>`).join("");
- const items=P.filter(p=>F==="all"||p.c===F).sort((a,b)=>(b.near||0)-(a.near||0));
- document.getElementById("list").innerHTML=items.map(p=>`<article class="p"><span class="c">${esc(C[p.c][i()])}</span><h3>${esc(p.n)}</h3><p>${esc(p.d[i()])}</p>${p.a?`<span class="a">${esc(p.a)}${p.t?` · ≈ ${p.t} ${esc(T[L].walk)}`:""}</span>`:""}<div class="row">${p.noMap?"":`<a class="map" href="${esc(mapUrl(p))}" target="_blank" rel="noopener">${esc(T[L].map)}</a>`}${p.w?`<a class="map" href="${esc(p.w)}" target="_blank" rel="noopener">${esc(T[L].web)}</a>`:""}${p.near?`<span class="near">${esc(T[L].near)}</span>`:""}</div></article>`).join("");
+ const k=location.hash.slice(1);
+ const v=document.getElementById("view");
+ v.innerHTML=VIEWS.has(k)?view(k):home();
+ v.style.animation="none";void v.offsetWidth;v.style.animation="";
 }
 document.querySelector(".lang").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;L=b.dataset.l;try{localStorage.setItem("cdf-lang",L)}catch(err){}render()});
-document.getElementById("chips").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;F=b.dataset.f;render()});
+window.addEventListener("hashchange",()=>{render();window.scrollTo(0,0)});
 render();
 }
 </script>
